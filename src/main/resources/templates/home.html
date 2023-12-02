@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" type="text/css" href = "/css/style.css"/>
+    <link rel="preconnet" href = "https://fonts.gstatic.com">
+    <link href = "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel = "stylesheet">
+    <title>Moolah</title>
+</head>
+<body>
+<section class="header">
+    <nav>
+        <a href="/"><img src="/css/images/logo1.png" alt=""></a>
+        <div class="nav-links">
+            <ul>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/contact">CONTACT</a></li>
+                <li><a href="/login">LOGIN</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="text-box">
+        <h1>MOOLAH</h1>
+        <h2>Money Management Made Easy Through Us</h2>
+        <p>Keep track of your spending and expenses the easy way.
+            <br>Moolah is at your disposal. <br>Click the link below to login or start TODAY!</p>
+        <div class="nav-links-centered">
+            <ul>
+                <li><a href="/login">LOGIN</a></li>
+                <li><a href="/signup">REGISTER</a></li>
+            </ul>
+        </div>
+</section>
+
+    <!--single quotes within the p th:text to add static text -->
+    <p th:text="'hello hello this is a test'"/>
+
+    <p th:text="'hello ' + ${firstName} + ' ' + ${lastName} + '. This is a test'"/>
+    <p>hello? this is just regular html</p>
+    <a href="/dashboard">next page to the dashboard</a>
+
+</body>
+</html>
