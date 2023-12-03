@@ -62,17 +62,19 @@ public class ExpenseDataManager {
     public Boolean addExpense(String email, Expense e){
 
         //able to add dupes :)
+        String name = e.getName();
         List<Integer> date = e.getDate();
         double amount = e.getAmount();
-        String description = e.getDescription();
+        String category = e.getCategory();
         String method = e.getMethod();
         Boolean recurring = e.getRecurring();
 
         Document expense = new Document("_id", new ObjectId())
                 .append("email", email)
+                .append("name", name)
                 .append("date", date)
                 .append("amount", amount)
-                .append("description", description)
+                .append("category", category)
                 .append("method", method)
                 .append("recurring", recurring);
 
@@ -97,18 +99,20 @@ public class ExpenseDataManager {
      * @return Document of the ExpenseData collection that matches the given parameters, else null
      */
     public Document findDocument(String email, Expense e){
+        String name = e.getName();
         List<Integer> date = e.getDate();
         double amount = e.getAmount();
-        String description = e.getDescription();
+        String category = e.getCategory();
         String method = e.getMethod();
         Boolean recurring = e.getRecurring();
 
         //find the first document
         Document doc = collection
                 .find(and(eq("email", email),
+                        eq("name", name),
                         eq("date", date),
                         eq("amount", amount),
-                        eq("description", description),
+                        eq("category", category),
                         eq("method", method),
                         eq("recurring", recurring)
                 )).first();
@@ -131,16 +135,18 @@ public class ExpenseDataManager {
 
         Document doc = findDocument(email, e);
 
+        String name = e.getName();
         List<Integer> date = updatedExpense.getDate();
         double amount = updatedExpense.getAmount();
-        String description = updatedExpense.getDescription();
+        String category = updatedExpense.getCategory();
         String method = updatedExpense.getMethod();
         Boolean recurring = updatedExpense.getRecurring();
 
         Bson updateExpense = Updates.combine(
                 Updates.set("date", date),
+                        Updates.set("name", name),
                         Updates.set("amount", amount),
-                        Updates.set("description", description),
+                        Updates.set("category", category),
                         Updates.set("method", method),
                         Updates.set("recurring", recurring));
         try {

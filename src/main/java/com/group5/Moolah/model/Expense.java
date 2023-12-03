@@ -4,19 +4,27 @@ import java.util.List;
 public class Expense {
 
     //date is a list in the format: DAY, MONTH, YEAR (in the respective indexes 0,1,2)
+    private String name;
     private List<Integer> date;
     private double amount;
-    private String description;
+    private String category;
     private String method;
     private Boolean recurring;
 
-    public Expense(List<Integer> date, double amount, String description, String method, Boolean recurring){
+    public Expense(String name, List<Integer> date, double amount, String category, String method, Boolean recurring){
+        this.name = name;
         this.date = date;
         this.amount = amount;
-        this.description = description;
+        this.category = category;
         this.method = method;
         this.recurring = recurring;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) { this.name = name; }
 
     public List<Integer> getDate() {
         return date;
@@ -34,12 +42,12 @@ public class Expense {
         this.amount = amount;
     }
 
-    public String getDescription() {
-        return description;
+    public String getCategory() {
+        return category;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getMethod() {
