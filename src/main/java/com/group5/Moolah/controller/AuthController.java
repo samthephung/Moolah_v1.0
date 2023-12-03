@@ -1,9 +1,12 @@
 package com.group5.Moolah.controller;
 
 import com.group5.Moolah.model.User;
+
 import com.group5.Moolah.services.UserAuth;
 import com.group5.Moolah.services.UserData;
+
 import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
