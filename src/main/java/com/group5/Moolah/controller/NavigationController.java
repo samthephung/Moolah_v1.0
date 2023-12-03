@@ -10,13 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class NavigationController {
 
-    //GetMapping returns views
+    //GetMapping returns views  --  @GetMapping(<some path endpoint>)
 
     @GetMapping("/")
-    public String homePage(Model model){
-
-        model.addAttribute("firstName", "Sam");
-        model.addAttribute("lastName", "Phung");
+    public String homePage(){
 
         //returns the name of the view to be displayed to the user -- home.html
         return "home";
@@ -27,15 +24,14 @@ public class NavigationController {
 
         //model.addAttribute("firstName", "Sam");
         //model.addAttribute("lastName", "Phung");
+        //the model information is then sent to the view dashboard
 
-        //returns the name of the view to be displayed to the user -- home.html
+        //returns the name of the view to be displayed to the user -- dashboard.html
         return "dashboard";
     }
 
     @GetMapping("/signup")
     public String signupPage(){
-
-        //returns the name of the view to be displayed to the user
         return "signup";
     }
 
@@ -43,4 +39,10 @@ public class NavigationController {
     public String loginPage(){
         return "login";
     }
+
+    @GetMapping("/contact")
+    public String contactPage(){
+        return "contact";
+    }
+
 }

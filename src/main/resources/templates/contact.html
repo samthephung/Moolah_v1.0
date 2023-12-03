@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+    <title>MOOLAH</title>
+    <link rel = "stylesheet" type="text/css" href = "/css/style.css"/>
+    <link rel="preconnet" href = "https://fonts.gstatic.com">
+    <link href = "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel = "stylesheet">
+</head>
+
+<body>
+<section class="header">
+    <nav>
+        <a href="/"><img src="/css/images/logo1.png"></a>
+        <div class="nav-links">
+            <ul>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/contact">CONTACT</a></li>
+                <li><a href="/login">LOGIN</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="text-box">
+        <h1>Questions? Concerns?</h1>
+        <p>If there are any questions you may have, or would just like more information,
+            you can contact us below. We will get back to you as soon as possible! -Moolah Team
+        </p>
+        <form action="https://formspree.io/f/xleykerr" method="post">
+            <label for="email">Your Email:</label><br>
+            <input type="email" id="email" name="email" size = "40" required><br>
+            <label for="message">Your Message:</label><br>
+            <textarea id="message" name="message" rows="10" cols="40" required></textarea><br>
+            <input type="submit" value="Send">
+        </form>
+    </div>
+</section>
+</body>
+</html>
