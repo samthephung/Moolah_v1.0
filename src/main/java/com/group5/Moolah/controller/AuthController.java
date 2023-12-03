@@ -30,7 +30,7 @@ public class AuthController {
     @PostMapping("/loginSubmitForm")
     public String loginFormSubmit(@ModelAttribute User user){
         if (UserAuth.userLogin(user.getName(), user.getEmailAddress(), user.getPassword())) {
-            return "signup-result";
+            return "dashboard";
         }
         else {
             user.setName("User does not exist");
