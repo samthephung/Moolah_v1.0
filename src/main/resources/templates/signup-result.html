@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>signup results</h1>
-<p th:text="'First Name:'"/>
-<p th:text="'Email:' + ${userLogin.emailAddress}"/>
+<p th:text="'First Name:' + ${user.name}"/>
+<p th:text="'Email:' + ${user.emailAddress}"/>
 </body>
 </html>
