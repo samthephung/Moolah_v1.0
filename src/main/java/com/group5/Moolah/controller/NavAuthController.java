@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Scope("session")
 public class NavAuthController {
 
-    private UserId id = new UserId();
+    //how to prevent an unauthorized user from accessing different routes?
+    //if the string is uninitialized with "" then no ones is logged in
+    private UserId id = new UserId("");
 
     //PostMapping
     @PostMapping("/signupSubmitForm")
@@ -28,7 +30,7 @@ public class NavAuthController {
         }
     }
 
-    @PostMapping("/loginSubmitForm")
+    @PostMapping("/dashboard")
     public String loginFormSubmit(@ModelAttribute User user){
 
         if(AccountService.verifyUser(user)){
@@ -43,10 +45,19 @@ public class NavAuthController {
 
     //GetMapping returns views  --  @GetMapping(<some path endpoint>)
     @GetMapping("/dashboard")
-    public String dashboardPage(){ return "dashboard"; }
+    public String dashboardPage(){
+        if(id.getUserIdentifier().equals("")){
+            return "home";
+        }
+        return "dashboard";
+    }
 
     @GetMapping("/contactAuth")
     public String contactAuthPage(){
+
+        if(id.getUserIdentifier().equals("")){
+            return "home";
+        }
 
         System.out.println(id.getUserIdentifier());
         return "contactSignedIn";
@@ -54,16 +65,25 @@ public class NavAuthController {
 
     @GetMapping("/addExpense")
     public String addExpensePage(){
+        if(id.getUserIdentifier().equals("")){
+            return "home";
+        }
         return "addExpense";
     }
 
     @GetMapping("/calculate")
     public String calculatePage(){
+        if(id.getUserIdentifier().equals("")){
+            return "home";
+        }
         return "calculate";
     }
 
     @GetMapping("/calculateResult")
     public String calculateResultPage(){
+        if(id.getUserIdentifier().equals("")){
+            return "home";
+        }
         return "calculateResult";
     }
 
