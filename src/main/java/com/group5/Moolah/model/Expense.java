@@ -12,6 +12,7 @@ public class Expense {
     private String category;
 
     public Expense(String name, double amount, List<Integer> date, String method, String recurring, String category){
+        System.out.println("Starting constructing expense");
         this.name = name;
         this.date = date;
         this.amount = amount;

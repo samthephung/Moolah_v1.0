@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ExpenseController {
 
     //PostMapping
-    @PostMapping("finished/userHome.html")
-    public String signupFormSubmit(@ModelAttribute Expense ex) {
-        System.out.println(ex.getName());
+    @PostMapping("/home")
+    public String submitExpenseAdd(@ModelAttribute Expense ex) {
+        System.out.println("NAME" + ex.getName());
         return "dashboard";
     }
 }
