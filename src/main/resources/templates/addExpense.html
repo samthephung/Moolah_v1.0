@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+    <title>MOOLAH</title>
+    <link rel = "stylesheet" type="text/css" href = "/css/style.css"/>
+    <link rel="preconnet" href = "https://fonts.gstatic.com">
+    <link href = "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel = "stylesheet">
+</head>
+
+<body>
+<section class="header">
+    <nav>
+        <a href="/dashboard"><img src="/css/images/logo1.png"></a>
+        <div class="nav-links">
+            <ul>
+                <li><a href="/dashboard">HOME</a></li>
+                <li><a href="/contactAuth">CONTACT</a></li>
+                <li><a href="/addExpense">ADD EXPENSE</a></li>
+                <li><a href="/calculate">CALCULATE</a></li>
+                <li><a href="/">LOGOUT</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="Update-form">
+        <h2>Enter your MOOLAH</h2>
+        <form action = "finished/userHome.html">
+            <input type="name" id="name" placeholder="Name of Income" required>
+            <br>
+            <input type="number" id="number" placeholder="Enter amount" required>
+            <br>
+            <input type="date" id="date" placeholder="Select date" required>
+            <br>
+            <select id="methodIncome" required>
+                <option value="">Select method</option>
+                <option value="cash">Cash</option>
+                <option value="income">Income</option>
+                <option value="Gift">Gift</option>
+            </select>
+            <br>
+            <!-- TODO: If you want to get rid of the recurring part you can -->
+            <select id="recurringIncome" required>
+                <option value="">Select recurrence</option>
+                <option value="one-time">One time expense</option>
+                <option value="weekly">Weekly expense</option>
+                <option value="biweekly">Biweekly expense</option>
+                <option value="monthly">Monthly expense</option>
+                <option value="yearly">Yearly expense</option>
+            </select>
+            <br>
+            <button type="submit">Enter</button>
+        </form>
+    </div>
+    <div class="deposit-form">
+        <h2>New Expense</h2>
+        <form action = "finished/userHome.html">
+            <input type="name" id="name" placeholder="Name of expense" required>
+            <br>
+            <input type="number" id="number" placeholder="Enter amount" required>
+            <br>
+            <input type="date" id="date" placeholder="Select date" required>
+            <br>
+            <select id="methodCreate" required>
+                <option value="">Select method</option>
+                <option value="cash">Cash</option>
+                <option value="debit">Debit</option>
+                <option value="credit">Credit</option>
+            </select>
+            <br>
+            <select id="recurringCreate" required>
+                <option value="">Select recurrence</option>
+                <option value="one-time">One time expense</option>
+                <option value="weekly">Weekly expense</option>
+                <option value="biweekly">Biweekly expense</option>
+                <option value="monthly">Monthly expense</option>
+                <option value="yearly">Yearly expense</option>
+            </select>
+            <br>
+            <select id="categoryCreate" required>
+                <option value="">Select category</option>
+                <option value="food">Food</option>
+                <option value="groceries">Groceries</option>
+                <option value="rent">Rent</option>
+                <option value="fun">Fun</option>
+                <option value="gift">Gift</option>
+                <option value="other">Other</option>
+            </select>
+            <br>
+            <button type="submit">Create</button>
+        </form>
+    </div>
+    <div class="Update-form">
+        <h2>Update an Expense</h2>
+        <form action = "finished/userHome.html">
+            <input type="name" id="name" placeholder="Name of expense" required>
+            <br>
+            <input type="number" id="number" placeholder="Enter amount" required>
+            <br>
+            <input type="date" id="date" placeholder="Select date" required>
+            <br>
+            <select id="method" required>
+                <option value="">Select method</option>
+                <option value="cash">Cash</option>
+                <option value="debit">Debit</option>
+                <option value="credit">Credit</option>
+            </select>
+            <br>
+            <select id="recurring" required>
+                <option value="">Select recurrence</option>
+                <option value="one-time">One time expense</option>
+                <option value="weekly">Weekly expense</option>
+                <option value="biweekly">Biweekly expense</option>
+                <option value="monthly">Monthly expense</option>
+                <option value="yearly">Yearly expense</option>
+            </select>
+            <br>
+            <select id="category" required>
+                <option value="">Select category</option>
+                <option value="food">Food</option>
+                <option value="groceries">Groceries</option>
+                <option value="rent">Rent</option>
+                <option value="fun">Fun</option>
+                <option value="gift">Gift</option>
+                <option value="other">Other</option>
+            </select>
+            <br>
+            <button type="submit">Update</button>
+        </form>
+    </div>
+    <div class="Delete-form">
+        <h2>Delete an Expense</h2>
+        <form action = "finished/userHome.html">
+            <input type="name" id="name" placeholder="Name of expense to delete" required>
+            <br>
+            <input type="number" id="number" placeholder="Enter amount" required>
+            <br>
+            <button type="submit">Delete</button>
+        </form>
+    </div>
+</section>
+</body>
+</html>

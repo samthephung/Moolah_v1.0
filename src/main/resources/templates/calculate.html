@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+    <title>MOOLAH</title>
+    <link rel = "stylesheet" type="text/css" href = "/css/style.css"/>
+    <link rel="preconnet" href = "https://fonts.gstatic.com">
+    <link href = "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel = "stylesheet">
+</head>
+
+<body>
+<section class="header">
+    <nav>
+        <a href="/dashboard"><img src="/css/images/logo1.png"></a>
+        <div class="nav-links">
+            <ul>
+                <li><a href="/dashboard">HOME</a></li>
+                <li><a href="/contactAuth">CONTACT</a></li>
+                <li><a href="/addExpense">ADD EXPENSE</a></li>
+                <li><a href="/calculate">CALCULATE</a></li>
+                <li><a href="/">LOGOUT</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="Update-form">
+        <h2>Calculate Expense</h2>
+        <form class = "calculate" action="/calculateResult">
+            <label for="calculate-expenses">Calculate expenses for:</label>
+            <select id="calculate-expenses" required>
+                <option value="">Select period</option>
+                <option value="day">Day</option>
+                <option value="month">Month</option>
+                <option value="year">Year</option>
+            </select>
+            <input type="date" id="date-input" style="display: none;" required>
+            <select id="month-select" style="display: none;" required>
+                <!-- Add options for each month -->
+                <option value="">Select month</option>
+                <option value="january">January</option>
+                <option value="february">February</option>
+                <option value="march">March</option>
+                <option value="april">April</option>
+                <option value="may">May</option>
+                <option value="june">June</option>
+                <option value="july">July</option>
+                <option value="august">August</option>
+                <option value="september">September</option>
+                <option value="october">October</option>
+                <option value="november">November</option>
+                <option value="december">December</option>
+            </select>
+            <select id="year-select" style="display: none;" required>
+                <!-- Add options for each year -->
+                <option value="">Select year</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+                <option value="2019">2019</option>
+                <option value="2018">2018</option>
+                <option value="2017">2017</option>
+                <option value="2016">2016</option>
+                <option value="2015">2015</option>
+                <option value="2014">2014</option>
+                <option value="2013">2013</option>
+                <option value="2012">2012</option>
+                <option value="2011">2011</option>
+                <option value="2010">2010</option>
+                <option value="2009">2009</option>
+                <option value="2008">2008</option>
+                <option value="2007">2007</option>
+                <option value="2006">2006</option>
+                <option value="2005">2005</option>
+                <option value="2004">2005</option>
+                <option value="2003">2003</option>
+                <option value="2002">2002</option>
+                <option value="2001">2001</option>
+                <option value="2000">2000</option>
+            </select>
+            <button type="submit">Calculate</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('calculate-expenses').addEventListener('change', function() {
+            var value = this.value;
+            var dateInput = document.getElementById('date-input');
+            var monthSelect = document.getElementById('month-select');
+            var yearSelect = document.getElementById('year-select');
+
+            dateInput.style.display = 'none';
+            monthSelect.style.display = 'none';
+            yearSelect.style.display = 'none';
+            dateInput.removeAttribute('required');
+            monthSelect.removeAttribute('required');
+            yearSelect.removeAttribute('required');
+
+            if (value === 'day') {
+                dateInput.style.display = 'block';
+                dateInput.setAttribute('required', '');
+            } else if (value === 'month') {
+                monthSelect.style.display = 'block';
+                monthSelect.setAttribute('required', '');
+            } else if (value === 'year') {
+                yearSelect.style.display = 'block';
+                yearSelect.setAttribute('required', '');
+            }
+        });
+    </script>
+</section>
+</body>
+</html>

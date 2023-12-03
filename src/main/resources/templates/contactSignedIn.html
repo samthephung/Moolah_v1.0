@@ -12,7 +12,6 @@
 <section class="header">
     <nav>
         <a href="/dashboard"><img src="/css/images/logo1.png"></a>
-        <h1>Welcome!</h1>
         <div class="nav-links">
             <ul>
                 <li><a href="/dashboard">HOME</a></li>
@@ -23,30 +22,21 @@
             </ul>
         </div>
     </nav>
-    <section class="expenses">
-        <h2>Weekly Expenses</h2>
-        <div class="expenses-list">
-            <ul>
-                <!-- Each list item represents an expense -->
-                <li>Expense 1</li>
-                <li>Expense 2</li>
-                <li>Expense 3</li>
-                <!-- Add more list items as needed -->
-            </ul>
-        </div>
-    </section>
-    <section class="daily-expenses">
-        <h2>Expenses for <input type="date" id="current-day"></h2>
-        <div class="daily-expenses-list">
-            <ul>
-                <!-- Each list item represents an expense for the current day -->
-                <li>Expense 1</li>
-                <li>Expense 2</li>
-                <li>Expense 3</li>
-                <!-- Add more list items as needed -->
-                <a href="/addExpense" class="add-expense-button">+</a>
-            </ul>
-        </div>
-    </section>
+    <div class="text-box">
+        <h1>Questions? Concerns?</h1>
+        <p>If there are any questions you may have, or would just like more information,
+            you can contact us below. We will get back to you as soon as possible! -Moolah Team
+        </p>
+        <form action="https://formspree.io/f/xleykerr" method="post">
+            <label for="email">Your Email:</label><br>
+            <input type="email" id="email" name="email" size = "40" required><br>
+
+            <label for="message">Your Message:</label><br>
+            <textarea id="message" name="message" rows="10" cols="40" required></textarea><br>
+
+            <input type="submit" value="Send">
+        </form>
+    </div>
+</section>
 </body>
 </html>
