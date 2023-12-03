@@ -2,37 +2,26 @@ package com.group5.Moolah.model;
 
 public class User {
 
-    //each user will have a unique identifier
-    //private int id;
-    private String firstName;
-    private String lastName;
+    //private int id -- unique id is the user's email
+    private String name;
 
     //username is the email address -- for logging in
     private String emailAddress;
     private String password;
 
-    public User(String firstName, String lastName, String emailAddress, String password) {
+    public User(String name, String emailAddress, String password) {
         //this.id = 0;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = name;
         this.emailAddress = emailAddress;
         this.password = password;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmailAddress() {

@@ -8,10 +8,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class HomeController {
+public class NavigationController {
 
     //GetMapping returns views
-    //PostMapping handles the form post requests
 
     @GetMapping("/")
     public String homePage(Model model){
@@ -33,27 +32,15 @@ public class HomeController {
         return "dashboard";
     }
 
-
     @GetMapping("/signup")
     public String signupPage(){
 
-        //returns the name of the view to be displayed to the user -- home.html
+        //returns the name of the view to be displayed to the user
         return "signup";
     }
 
-    //handles post requests sent to /users and reads form data
-    //modelattribute will map the data to a User object
-    @PostMapping("/signupSubmitForm")
-    public String signupFormSubmit(@ModelAttribute User user){
-        System.out.println(user.getEmailAddress());
-        return "signup-result";
-    }
-
-
     @GetMapping("/login")
     public String loginPage(){
-
-        //returns the name of the view to be displayed to the user -- home.html
         return "login";
     }
 }
