@@ -27,7 +27,7 @@ public class Main {
 
         //connection string to the mongodb database >>
         try(MongoClient client = MongoClients.create(Constants.URI)) {
-            String email = null;
+            String email = "";
 
             //object to handle the userdata functionality
             System.out.println("Create new account?");

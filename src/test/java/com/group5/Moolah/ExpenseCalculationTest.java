@@ -3,7 +3,8 @@ package com.group5.Moolah;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 
-import main.src.*;
+import com.group5.Moolah.services.*;
+import com.group5.Moolah.repositories.*;
 import java.util.List;
 import java.util.ArrayList;
 

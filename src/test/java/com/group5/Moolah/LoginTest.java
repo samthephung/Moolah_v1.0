@@ -1,10 +1,10 @@
 package com.group5.Moolah;
 
-import main.src.Login;
+import com.group5.Moolah.services.*;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-public class LoginText {
+public class LoginTest {
     @Test
     public void testBasicHash() {
         String password = "test";
