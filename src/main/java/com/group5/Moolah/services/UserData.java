@@ -104,13 +104,13 @@ public class UserData {
         Document doc = collection.find(eq("email", email)).first();
         if (doc != null) {
             if (!(Login.passwordHash(password).equals(doc.getString("pass")))) { //check if password matches
-                System.out.println("Account did not match");
+                System.out.println("password did not match");
                 return false;
             }
-            if (!(name.equals(doc.getString("name")))) { //check if name matches
-                System.out.println("Account did not match");
-                return false;
-            }
+            //if (!(name.equals(doc.getString("name")))) { //check if name matches
+            //    System.out.println("name did not match");
+            //    return false;
+            //}
             System.out.println("Account matches");
             return true;
         }

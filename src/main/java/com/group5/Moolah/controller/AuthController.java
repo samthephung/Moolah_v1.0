@@ -1,6 +1,8 @@
 package com.group5.Moolah.controller;
 
 import com.group5.Moolah.model.User;
+import com.group5.Moolah.services.UserAuth;
+import com.group5.Moolah.services.UserData;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,14 +16,28 @@ public class AuthController {
     //model attribute will map the data to a User object -- and send it to signup-result.html
     @PostMapping("/signupSubmitForm")
     public String signupFormSubmit(@ModelAttribute User user){
-        //System.out.println(user.getEmailAddress());
-        return "signup-result";
+        if (UserAuth.userSignup(user.getName(), user.getEmailAddress(), user.getPassword())) {
+            return "signup-result";
+        }
+        else {
+            user.setName("User already exists");
+            user.setEmailAddress("");
+            user.setPassword("");
+            return "signup-result";
+        }
     }
 
     @PostMapping("/loginSubmitForm")
     public String loginFormSubmit(@ModelAttribute User user){
-        user.setName(" ");
-        return "signup-result";
+        if (UserAuth.userLogin(user.getName(), user.getEmailAddress(), user.getPassword())) {
+            return "signup-result";
+        }
+        else {
+            user.setName("User does not exist");
+            user.setEmailAddress("");
+            user.setPassword("");
+            return "signup-result";
+        }
     }
 
 }

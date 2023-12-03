@@ -27,40 +27,40 @@ public class Main {
 
         //connection string to the mongodb database >>
         try(MongoClient client = MongoClients.create(Constants.URI)) {
-            String email = "";
+            //String email = "abc";
 
             //object to handle the userdata functionality
             System.out.println("Create new account?");
             UserData user = new UserData(client);
-            user.createUser("Sam", "sp@gmail.com", "12345");
+            user.createUser("Sam", "sp@gmail.com", "c");
 
-            System.out.println("login to existing account?");
-            if (user.matchUser("Sam", "sp@gmail.com", "12345")) {
-                email = "sp@gmail.com";
-            }
+            //System.out.println("login to existing account?");
+            //if (user.matchUser("Sam", "sp@gmail.com", "12345")) {
+            //    email = "sp@gmail.com";
+            //}
             /*user.updateUser("sp@gmail.com", "Sarah", "123456");*/
 
             /*user.deleteUser("sam@gmail.com");
             user.deleteUser("sp@gmail.com");**/
 
             //date is a list of integers -- in the format -- DAY, MONTH, YEAR
-            List<Integer> date = new ArrayList<>();
-            date.add(14);
-            date.add(11);
-            date.add(2023);
+            //List<Integer> date = new ArrayList<>();
+            //date.add(14);
+            //date.add(11);
+            //date.add(2023);
 
-            ExpenseCalculation ec = new ExpenseCalculation(client);
-            ec.getDayTotal(email, date);
+            //ExpenseCalculation ec = new ExpenseCalculation(client);
+            //ec.getDayTotal(email, date);
 
-            ec.getMonthTotal(email, date);
+            //ec.getMonthTotal(email, date);
 
-            ExpenseData exp = new ExpenseData(client);
-            Expense e = new Expense(date, 25.00, "test", "cash", false);
-            Expense f = new Expense(date, 25.00, "test", "cash", false);
+            //ExpenseData exp = new ExpenseData(client);
+            //Expense e = new Expense(date, 25.00, "test", "cash", false);
+            //Expense f = new Expense(date, 25.00, "test", "cash", false);
             //Expense updateE = new Expense("10-15-2023", 20.50, "test", "card", false);
 
-            exp.addExpense("sp@gmail.com", e);
-            exp.addExpense("sp@gmail.com", f);
+            //exp.addExpense("sp@gmail.com", e);
+            //exp.addExpense("sp@gmail.com", f);
             //exp.updateExpense("sp@gmail.com", e, updateE);
             //exp.deleteExpense("sp@gmail.com", e);
 
