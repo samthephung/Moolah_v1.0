@@ -1,16 +1,49 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Sign Up</title>
+    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+    <title>MOOLAH</title>
+    <link rel = "stylesheet" type="text/css" href = "/css/style.css"/>
+    <link rel="preconnet" href = "https://fonts.gstatic.com">
+    <link href = "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel = "stylesheet">
 </head>
+
 <body>
-<form action="/signupSubmitForm" method="post">
-    <div><input name="firstName" placeholder="First Name"></div>
-    <div><input name="lastName" placeholder="Last Name"></div>
-    <div><input name="emailAddress" placeholder="Email Address"></div>
-    <div><input name="password" placeholder="Password" type="password"></div>
-    <div><input type="Submit"></div>
-</form>
+<section class="header">
+    <nav>
+        <a href="/"><img src="/css/images/logo1.png"></a>
+        <div class="nav-links">
+            <ul>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/contact">CONTACT</a></li>
+                <li><a href="/login">LOGIN</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class = "text-box">
+        <form action = "/signupSubmitForm" method="post">
+            <label for="name">Enter Name:</label></br>
+            <input type="text" id="name" name="name" size = "40" placeholder="Enter Name" required></br>
+
+            <label for="emailAddress">Enter Email:</label></br>
+            <input type="text" id="emailAddress" name="emailAddress" size = "40" placeholder="Enter Email" required></br>
+
+            <label for="password">Create Password:</label></br>
+            <input type="password" id="password" name="password" size = "40" placeholder="Create a password" required></br>
+
+            <label for="password_confirmed">Confirm Password:</label></br>
+            <input type="password" id="password_confirmed" name="password" size = "40" placeholder="Confirm password" required></br>
+
+            <input type="submit" value="Create">
+        </form>
+        </br>
+        <p>Have an account? Click below to sign in!</p>
+        <div class="nav-links-centered">
+            <ul>
+                <li><a href="/login">LOGIN</a></li>
+            </ul>
+        </div>
+    </section>
+</section>
 </body>
 </html>
