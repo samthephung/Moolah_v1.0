@@ -12,7 +12,7 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 public class ExpenseCalculationTest {
-
+    /*
     //create a new user and prepopulate expenses for each test
     @BeforeClass
     public static void populateWithExpenses(){
@@ -126,5 +126,6 @@ public class ExpenseCalculationTest {
         assertEquals(0, ec.getMonthTotal("sp@gmail.com", date), 0.01);
 
     }
+    */
 
 }

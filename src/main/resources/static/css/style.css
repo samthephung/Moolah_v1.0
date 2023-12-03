@@ -140,20 +140,23 @@ nav img{
     100% { transform: scale(1); }
 }
 
-#amount {
+/*
+#value {
     font-size: 3em;
     text-align: center;
     margin-top: 20px;
-    color: #036203; /* Green color */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for 3D effect */
-    transform: rotate(-5deg); /* Slight rotation */
-    animation: pulsate 2s infinite; /* Pulsating effect */
-}
+    color: #036203; /* Green color
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for 3D effect
+    transform: rotate(-5deg); /* Slight rotation
+    animation: pulsate 2s infinite; /* Pulsating effect
+}*/
 
-#amount:hover {
-    color: #023e18; /* Change color on hover */
-    transform: scale(1.2); /* Increase size on hover */
-}
+/*
+#value:hover {
+    color: #023e18;  /Change color on hover
+    transform: scale(1.2); Increase size on hover
+}*/
+
 body, html {
     overflow-x: auto; /* Hide horizontal scrollbar */
     overflow-y: auto; /* Hide vertical scrollbar */

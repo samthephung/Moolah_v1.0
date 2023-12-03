@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-@Scope("session")
 public class ExpenseController {
 
     //PostMapping
-    @PostMapping("/home")
-    public String submitExpenseAdd(@ModelAttribute Expense ex) {
-        System.out.println("NAME" + ex.getName());
+    @PostMapping("/addExpense")
+    public String submitExpenseAdd(@ModelAttribute Expense expense) {
+
+        System.out.println("NAME: " + expense.getName());
+        //call service for adding an expense
         return "dashboard";
     }
 }

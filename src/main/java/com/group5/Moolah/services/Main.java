@@ -33,10 +33,7 @@ public class Main {
             user.deleteUser("sp@gmail.com");**/
 
             //date is a list of integers -- in the format -- DAY, MONTH, YEAR
-            ArrayList<Integer> date = new ArrayList<>();
-            date.add(14);
-            date.add(11);
-            date.add(2023);
+            String date = "2023-12-10";
 
             //ExpenseCalculation ec = new ExpenseCalculation(client);
             //ec.getDayTotal(email, date);

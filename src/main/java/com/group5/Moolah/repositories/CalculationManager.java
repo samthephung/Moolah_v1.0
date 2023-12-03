@@ -55,15 +55,11 @@ public class CalculationManager {
      * @param date List that represents a date in the format 0:day, 1:month and 2:year
      * @return total of the expenses of the day as a double
      */
-    public double getDayTotal(String email, List<Integer> date){
-        //use the entire date list because we want to get the specific date
-        int day = date.get(0);
-        int month = date.get(1);
-        int year = date.get(2);
+    public double getDayTotal(String email, String date){
 
         double total = 0;
         //MongoCursor Object which will iterate through each of the documents!
-        MongoCursor<Document> cursor = collection.find(and(eq("email", email), in("date", day), in("date", month), in("date", year))).iterator();
+        MongoCursor<Document> cursor = collection.find(and(eq("email", email), eq("date", date))).iterator();
 
         try{
             while(cursor.hasNext()){
@@ -79,22 +75,19 @@ public class CalculationManager {
     }
 
     /**
-     * Total of all expenses of a specific month (month, year). If
+     * Total of all expenses of a specific month (month, year). If ********************* fix this
      * there exists no expenses in the month, return 0.00.
      *
      * @param email String representing the user's email associated with their account
      * @param date List that represents a date in the format 0:day, 1:month and 2:year
      * @return total of the expenses of the day as a double
      */
-    public double getMonthTotal(String email, List<Integer> date){
-        //use only month and year -- to get the month
-        int month = date.get(1);
-        int year = date.get(2);
+    public double getMonthTotal(String email, String date){
 
         double total = 0;
         //MongoCursor Object which will iterate through each of the documents!
         //in -- matches any of the values in the array
-        MongoCursor<Document> cursor = collection.find(and(eq("email", email), in("date", year), in("date", month))).iterator();
+        MongoCursor<Document> cursor = collection.find(and(eq("email", email), eq("date", date))).iterator();
 
         try{
             while(cursor.hasNext()){

@@ -63,7 +63,7 @@ public class ExpenseDataManager {
 
         //able to add dupes :)
         String name = e.getName();
-        List<Integer> date = e.getDate();
+        String date = e.getDate();
         double amount = e.getAmount();
         String category = e.getCategory();
         String method = e.getMethod();
@@ -100,7 +100,7 @@ public class ExpenseDataManager {
      */
     public Document findDocument(String email, Expense e){
         String name = e.getName();
-        List<Integer> date = e.getDate();
+        String date = e.getDate();
         double amount = e.getAmount();
         String category = e.getCategory();
         String method = e.getMethod();
@@ -136,7 +136,7 @@ public class ExpenseDataManager {
         Document doc = findDocument(email, e);
 
         String name = e.getName();
-        List<Integer> date = updatedExpense.getDate();
+        String date = updatedExpense.getDate();
         double amount = updatedExpense.getAmount();
         String category = updatedExpense.getCategory();
         String method = updatedExpense.getMethod();

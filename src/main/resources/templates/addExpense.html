@@ -42,21 +42,21 @@
     </div>
     <div class="deposit-form">
         <h2>Add a New Expense</h2>
-        <form action = "/submitExpenseAdd" method="post">
-            <input type="text" id="name" placeholder="Name of expense" required>
+        <form action = "/addExpense" method="post">
+            <input type="text" id="name" name="name" placeholder="Name of expense" required>
             <br>
-            <input type="number" id="amount" placeholder="Enter amount" required>
+            <input type="number" id="number" name="amount" placeholder="Enter amount" required>
             <br>
-            <input type="date" id="date" placeholder="Select date" required>
+            <input type="date" id="date" name="date" placeholder="Select date" required>
             <br>
-            <select id="method" required>
+            <select id="method" name="method" required>
                 <option value="">Select method</option>
                 <option value="cash">Cash</option>
                 <option value="debit">Debit</option>
                 <option value="credit">Credit</option>
             </select>
             <br>
-            <select id="recurring" required>
+            <select id="recurring" name="recurring" required>
                 <option value="">Select recurrence</option>
                 <option value="one-time">One time expense</option>
                 <option value="weekly">Weekly expense</option>
@@ -65,7 +65,7 @@
                 <option value="yearly">Yearly expense</option>
             </select>
             <br>
-            <select id="category" required>
+            <select id="category" name="category" required>
                 <option value="">Select category</option>
                 <option value="food">Food</option>
                 <option value="groceries">Groceries</option>

@@ -3,15 +3,16 @@ package com.group5.Moolah.model;
 import java.util.List;
 public class Expense {
 
-    //date is a list in the format: DAY, MONTH, YEAR (in the respective indexes 0,1,2)
     private String name;
     private double amount;
-    private List<Integer> date;
+
+    //date is in the format: yyyy-mm-dd
+    private String date;
     private String method;
     private String recurring;
     private String category;
 
-    public Expense(String name, double amount, List<Integer> date, String method, String recurring, String category){
+    public Expense(String name, double amount, String date, String method, String recurring, String category){
         System.out.println("Starting constructing expense");
         this.name = name;
         this.date = date;
@@ -27,11 +28,11 @@ public class Expense {
 
     public void setName(String name) { this.name = name; }
 
-    public List<Integer> getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(List<Integer> date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
