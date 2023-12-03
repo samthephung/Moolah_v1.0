@@ -1,6 +1,7 @@
 package com.group5.Moolah.services;
 
 import com.group5.Moolah.model.Expense;
+import com.group5.Moolah.repositories.ExpenseManager;
 
 public class ExpenseService {
 
@@ -9,8 +10,8 @@ public class ExpenseService {
     //these classes will call the repository methods that perform the create, update, retrieve and delete operations
 
     //return true if successful add
-    public static Boolean addExpenseService(Expense e){
-        return true;
+    public static Boolean addExpenseService(String id, Expense e){
+        return ExpenseManager.addExpenseManager(id, e);
     }
 
     //return arraylist of objects

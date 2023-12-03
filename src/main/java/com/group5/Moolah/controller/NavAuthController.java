@@ -1,8 +1,10 @@
 package com.group5.Moolah.controller;
 
+import com.group5.Moolah.model.Expense;
 import com.group5.Moolah.model.User;
 import com.group5.Moolah.model.UserId;
 import com.group5.Moolah.services.AccountService;
+import com.group5.Moolah.services.ExpenseService;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +19,20 @@ public class NavAuthController {
     //if the string is uninitialized with "" then no ones is logged in
     private UserId id = new UserId("");
 
-    //PostMapping
+    //PostMapping for Expenses start here!
+    @PostMapping("/addExpense")
+    public String submitExpenseAdd(@ModelAttribute Expense expense) {
+
+        System.out.println("NAME: " + expense.getName());
+        //call service for adding an expense
+        if(ExpenseService.addExpenseService(id.getUserIdentifier(), expense)){
+            //success message will add up --- or each time you render the dashboard the new expense will come up
+            return "dashboard";
+        }
+        return "dashboard";
+    }
+
+    //PostMapping -- logging in
     @PostMapping("/signupSubmitForm")
     public String signupFormSubmit(@ModelAttribute User user){
 
