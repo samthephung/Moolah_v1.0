@@ -1,7 +1,10 @@
 package com.group5.Moolah.services;
 
 import com.group5.Moolah.repositories.Constants;
+import com.group5.Moolah.repositories.ExpenseDataManager;
 import com.group5.Moolah.repositories.UserDataManager;
+import com.group5.Moolah.model.Expense;
+import java.util.ArrayList;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -30,22 +33,22 @@ public class Main {
             user.deleteUser("sp@gmail.com");**/
 
             //date is a list of integers -- in the format -- DAY, MONTH, YEAR
-            //List<Integer> date = new ArrayList<>();
-            //date.add(14);
-            //date.add(11);
-            //date.add(2023);
+            ArrayList<Integer> date = new ArrayList<>();
+            date.add(14);
+            date.add(11);
+            date.add(2023);
 
             //ExpenseCalculation ec = new ExpenseCalculation(client);
             //ec.getDayTotal(email, date);
 
             //ec.getMonthTotal(email, date);
 
-            //ExpenseData exp = new ExpenseData(client);
-            //Expense e = new Expense(date, 25.00, "test", "cash", false);
+            ExpenseDataManager exp = new ExpenseDataManager(client);
+            Expense e = new Expense("new expense", 15, date, "cash", "monthly", "test");
             //Expense f = new Expense(date, 25.00, "test", "cash", false);
             //Expense updateE = new Expense("10-15-2023", 20.50, "test", "card", false);
 
-            //exp.addExpense("sp@gmail.com", e);
+            exp.addExpense("sp@gmail.com", e);
             //exp.addExpense("sp@gmail.com", f);
             //exp.updateExpense("sp@gmail.com", e, updateE);
             //exp.deleteExpense("sp@gmail.com", e);

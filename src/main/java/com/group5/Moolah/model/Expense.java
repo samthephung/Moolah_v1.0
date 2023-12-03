@@ -5,13 +5,13 @@ public class Expense {
 
     //date is a list in the format: DAY, MONTH, YEAR (in the respective indexes 0,1,2)
     private String name;
-    private List<Integer> date;
     private double amount;
-    private String category;
+    private List<Integer> date;
     private String method;
-    private Boolean recurring;
+    private String recurring;
+    private String category;
 
-    public Expense(String name, List<Integer> date, double amount, String category, String method, Boolean recurring){
+    public Expense(String name, double amount, List<Integer> date, String method, String recurring, String category){
         this.name = name;
         this.date = date;
         this.amount = amount;
@@ -58,11 +58,11 @@ public class Expense {
         this.method = method;
     }
 
-    public Boolean getRecurring() {
+    public String getRecurring() {
         return recurring;
     }
 
-    public void setRecurring(Boolean recurring) {
+    public void setRecurring(String recurring) {
         this.recurring = recurring;
     }
 }

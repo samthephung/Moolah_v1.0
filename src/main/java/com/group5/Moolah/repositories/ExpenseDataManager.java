@@ -67,7 +67,7 @@ public class ExpenseDataManager {
         double amount = e.getAmount();
         String category = e.getCategory();
         String method = e.getMethod();
-        Boolean recurring = e.getRecurring();
+        String recurring = e.getRecurring();
 
         Document expense = new Document("_id", new ObjectId())
                 .append("email", email)
@@ -104,7 +104,7 @@ public class ExpenseDataManager {
         double amount = e.getAmount();
         String category = e.getCategory();
         String method = e.getMethod();
-        Boolean recurring = e.getRecurring();
+        String recurring = e.getRecurring();
 
         //find the first document
         Document doc = collection
@@ -140,7 +140,7 @@ public class ExpenseDataManager {
         double amount = updatedExpense.getAmount();
         String category = updatedExpense.getCategory();
         String method = updatedExpense.getMethod();
-        Boolean recurring = updatedExpense.getRecurring();
+        String recurring = updatedExpense.getRecurring();
 
         Bson updateExpense = Updates.combine(
                 Updates.set("date", date),

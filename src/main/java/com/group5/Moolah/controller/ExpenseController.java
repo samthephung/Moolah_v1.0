@@ -17,6 +17,7 @@ public class ExpenseController {
     //PostMapping
     @PostMapping("finished/userHome.html")
     public String signupFormSubmit(@ModelAttribute Expense ex) {
-
+        System.out.println(ex.getName());
+        return "dashboard";
     }
 }
