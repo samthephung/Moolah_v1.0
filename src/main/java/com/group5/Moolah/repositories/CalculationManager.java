@@ -1,4 +1,4 @@
-package com.group5.Moolah.services;
+package com.group5.Moolah.repositories;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
@@ -17,7 +17,7 @@ import java.util.List;
  * daily and monthly totals of all user's expenses, depending on
  * the date provided.
  */
-public class ExpenseCalculation {
+public class CalculationManager {
 
     /**
      * MongoClient that initiates connection to remote MongoDB atlas.
@@ -38,7 +38,7 @@ public class ExpenseCalculation {
     /**
      * Construct a connection to the db and establish usage of the ExpenseData collection
      */
-    public ExpenseCalculation(MongoClient client){
+    public CalculationManager(MongoClient client){
         //instantiate the object
         this.client = client;
         database = client.getDatabase(Constants.DATABASE);

@@ -1,4 +1,4 @@
-package com.group5.Moolah.services;
+package com.group5.Moolah.repositories;
 
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoClient;
@@ -19,8 +19,9 @@ import static com.mongodb.client.model.Filters.eq;
  * a unique email that will act as their identifier (primary key).
  * The user will be able to create a new account, update their information
  * or delete their existing account within the UserData Collection.
+ * //this is where the actual CRUD operations will be performed -- reaching out directly to the MongoDB from this class
  */
-public class UserData {
+public class UserDataManager {
 
     /**
      * MongoClient that initiates connection to remote MongoDB atlas.
@@ -41,7 +42,7 @@ public class UserData {
      * Construct a connection to the db and establish usage of the UserData collection
      */
     //setup objects for operations
-    public UserData(MongoClient client){
+    public UserDataManager(MongoClient client){
         //instantiate the object
         this.client = client;
         database = client.getDatabase(Constants.DATABASE);
@@ -82,7 +83,7 @@ public class UserData {
             Document user = new Document("_id", new ObjectId())
                     .append("name", name)
                     .append("email", email)
-                    .append("pass", Login.passwordHash(password));
+                    .append("pass", LoginManager.passwordHash(password));
 
             try {
                 collection.insertOne(user);
@@ -103,7 +104,7 @@ public class UserData {
     public Boolean matchUser(String name, String email, String password) {
         Document doc = collection.find(eq("email", email)).first();
         if (doc != null) {
-            if (!(Login.passwordHash(password).equals(doc.getString("pass")))) { //check if password matches
+            if (!(LoginManager.passwordHash(password).equals(doc.getString("pass")))) { //check if password matches
                 System.out.println("password did not match");
                 return false;
             }

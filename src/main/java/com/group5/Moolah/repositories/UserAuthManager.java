@@ -1,12 +1,12 @@
-package com.group5.Moolah.services;
+package com.group5.Moolah.repositories;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 
-public class UserAuth {
+public class UserAuthManager {
     public static Boolean userSignup(String name, String email, String password) {
         try (MongoClient client = MongoClients.create(Constants.URI)) {
-            UserData ud = new UserData(client);
+            UserDataManager ud = new UserDataManager(client);
 
             return ud.createUser(name, email, password);
         }
@@ -14,7 +14,7 @@ public class UserAuth {
 
     public static Boolean userLogin(String name, String email, String password) {
         try (MongoClient client = MongoClients.create(Constants.URI)) {
-            UserData ud = new UserData(client);
+            UserDataManager ud = new UserDataManager(client);
 
             return ud.matchUser(name, email, password);
         }

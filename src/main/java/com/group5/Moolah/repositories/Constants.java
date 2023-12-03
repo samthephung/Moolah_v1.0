@@ -1,4 +1,4 @@
-package com.group5.Moolah.services;
+package com.group5.Moolah.repositories;
 
 public class Constants {
     public static final String URI = "mongodb+srv://admin:adminTest123@moolah.ye79sts.mongodb.net/?retryWrites=true&w=majority";

@@ -1,24 +1,10 @@
 package com.group5.Moolah.services;
 
-import com.mongodb.MongoClientSettings;
-import com.mongodb.MongoException;
+import com.group5.Moolah.repositories.Constants;
+import com.group5.Moolah.repositories.UserDataManager;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-
-import com.mongodb.client.model.Updates;
-import com.mongodb.client.result.InsertOneResult;
-import org.bson.Document;
-import org.bson.codecs.configuration.CodecProvider;
-import org.bson.codecs.configuration.CodecRegistries;
-import org.bson.codecs.configuration.CodecRegistry;
-import org.bson.codecs.pojo.PojoCodecProvider;
-import org.bson.conversions.Bson;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.mongodb.client.model.Filters.eq;
 
@@ -31,7 +17,7 @@ public class Main {
 
             //object to handle the userdata functionality
             System.out.println("Create new account?");
-            UserData user = new UserData(client);
+            UserDataManager user = new UserDataManager(client);
             user.createUser("Sam", "sp@gmail.com", "c");
 
             //System.out.println("login to existing account?");

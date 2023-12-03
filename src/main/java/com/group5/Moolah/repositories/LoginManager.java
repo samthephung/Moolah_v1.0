@@ -1,10 +1,10 @@
-package com.group5.Moolah.services;
+package com.group5.Moolah.repositories;
 
 import java.security.MessageDigest;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 
-public class Login {
+public class LoginManager {
     public static String passwordHash(String password) {
         try {
             password += "m0ol4$"; //moolah salting

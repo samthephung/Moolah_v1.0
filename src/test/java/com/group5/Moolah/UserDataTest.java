@@ -3,7 +3,6 @@ package com.group5.Moolah;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 
-import com.group5.Moolah.services.*;
 import com.group5.Moolah.repositories.*;
 
 import org.junit.*;
@@ -16,7 +15,7 @@ public class UserDataTest {
     @AfterClass
     public static void removeUsers_CleanUp(){
         MongoClient client = MongoClients.create(Constants.URI);
-        UserData user = new UserData(client);
+        UserDataManager user = new UserDataManager(client);
         user.removeAllUsers();
     }
 
@@ -25,7 +24,7 @@ public class UserDataTest {
     @Test(timeout = 5000)
     public void createUser_Success1(){
         MongoClient client = MongoClients.create(Constants.URI);
-        UserData user = new UserData(client);
+        UserDataManager user = new UserDataManager(client);
 
         String name = "Zena Baryoun";
         String email = "zb@gmail.com";
@@ -38,7 +37,7 @@ public class UserDataTest {
     @Test(timeout = 5000)
     public void createUser_Success2(){
         MongoClient client = MongoClients.create(Constants.URI);
-        UserData user = new UserData(client);
+        UserDataManager user = new UserDataManager(client);
 
         String name = "Fletcher Hagan";
         String email = "fh@gmail.com";
@@ -51,7 +50,7 @@ public class UserDataTest {
     @Test(timeout = 5000)
     public void createUser_Fail(){
         MongoClient client = MongoClients.create(Constants.URI);
-        UserData user = new UserData(client);
+        UserDataManager user = new UserDataManager(client);
 
         String name = "Jonathan Hart";
         String email = "jh@gmail.com";
@@ -64,7 +63,7 @@ public class UserDataTest {
     @Test(timeout = 5000)
     public void matchUser_Success(){
         MongoClient client = MongoClients.create(Constants.URI);
-        UserData user = new UserData(client);
+        UserDataManager user = new UserDataManager(client);
 
         String name = "Fletcher Hagan";
         String email = "fh@gmail.com";
@@ -76,7 +75,7 @@ public class UserDataTest {
     @Test(timeout = 5000)
     public void matchUser_Fail(){
         MongoClient client = MongoClients.create(Constants.URI);
-        UserData user = new UserData(client);
+        UserDataManager user = new UserDataManager(client);
 
         String name = "Fletcher Hagen"; //name change
         String email = "fh@gmail.com";
@@ -88,7 +87,7 @@ public class UserDataTest {
     @Test (timeout = 5000)
     public void matchUser_Fail2(){
         MongoClient client = MongoClients.create(Constants.URI);
-        UserData user = new UserData(client);
+        UserDataManager user = new UserDataManager(client);
 
         String name = "Fletcher Hagan";
         String email = "fh@yahoo.com"; //email change
@@ -100,7 +99,7 @@ public class UserDataTest {
     @Test (timeout = 5000)
     public void matchUser_Fail3(){
         MongoClient client = MongoClients.create(Constants.URI);
-        UserData user = new UserData(client);
+        UserDataManager user = new UserDataManager(client);
 
         String name = "Fletcher Hagan";
         String email = "fh@gmail.com";
@@ -114,7 +113,7 @@ public class UserDataTest {
     public void updateUser_FullName_Success(){
 
         MongoClient client = MongoClients.create(Constants.URI);
-        UserData user = new UserData(client);
+        UserDataManager user = new UserDataManager(client);
 
         String name = "Frank Wong";
         String email = "fw@gmail.com";
@@ -131,7 +130,7 @@ public class UserDataTest {
     @Test(timeout = 5000)
     public void updateUser_FullName_Fail(){
         MongoClient client = MongoClients.create(Constants.URI);
-        UserData user = new UserData(client);
+        UserDataManager user = new UserDataManager(client);
 
         String name = "Frank Wong";
         String email = "test@gmail.com";
@@ -145,7 +144,7 @@ public class UserDataTest {
     public void updateUser_Password_Success(){
 
         MongoClient client = MongoClients.create(Constants.URI);
-        UserData user = new UserData(client);
+        UserDataManager user = new UserDataManager(client);
 
         String name = "";
         String email = "zb@gmail.com";
@@ -158,7 +157,7 @@ public class UserDataTest {
     @Test(timeout = 5000)
     public void updateUser_Password_Fail(){
         MongoClient client = MongoClients.create(Constants.URI);
-        UserData user = new UserData(client);
+        UserDataManager user = new UserDataManager(client);
 
         String name = "";
         String email = "test@gmail.com";
@@ -171,7 +170,7 @@ public class UserDataTest {
     @Test(timeout = 5000)
     public void updateUser_FullNameAndPass_Success(){
         MongoClient client = MongoClients.create(Constants.URI);
-        UserData user = new UserData(client);
+        UserDataManager user = new UserDataManager(client);
 
         String name = "Niki Khanbeiki";
         String email = "nk@gmail.com";
@@ -190,7 +189,7 @@ public class UserDataTest {
 
         //create a single user then delete
         MongoClient client = MongoClients.create(Constants.URI);
-        UserData user = new UserData(client);
+        UserDataManager user = new UserDataManager(client);
 
         String name = "Faisal Yusufzai";
         String email = "fy@gmail.com";
@@ -204,7 +203,7 @@ public class UserDataTest {
     @Test(timeout = 5000)
     public void deleteUser_Fail(){
         MongoClient client = MongoClients.create(Constants.URI);
-        UserData user = new UserData(client);
+        UserDataManager user = new UserDataManager(client);
         String email = "fy@gmail.com";
 
         assertFalse(user.deleteUser(email));
