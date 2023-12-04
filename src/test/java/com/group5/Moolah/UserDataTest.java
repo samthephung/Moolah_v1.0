@@ -77,8 +77,8 @@ public class UserDataTest {
         MongoClient client = MongoClients.create(Constants.URI);
         UserDataManager user = new UserDataManager(client);
 
-        String name = "Fletcher Hagen"; //name change
-        String email = "fh@gmail.com";
+        String name = "Fletcher Hagan";
+        String email = "fj@gmail.com"; //email change
         String password = "12345";
 
         assertFalse(user.matchUser(name, email, password));

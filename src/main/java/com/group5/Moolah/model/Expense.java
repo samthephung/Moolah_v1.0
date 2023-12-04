@@ -5,7 +5,6 @@ public class Expense {
 
     private String name;
     private double amount;
-
     //date is in the format: yyyy-mm-dd
     private String date;
     private String method;

@@ -9,7 +9,6 @@ import static org.junit.Assert.*;
 import java.util.*;
 
 public class ExpenseDataTest {
-    /*
 
     //missing fields will be handled by the controller logic//
     //remove all expenses once finished
@@ -26,8 +25,8 @@ public class ExpenseDataTest {
     public void createExpense_Success1(){
         MongoClient client = MongoClients.create(Constants.URI);
         ExpenseDataManager exp = new ExpenseDataManager(client);
-        List<Integer> date = new ArrayList<>(){ {add(14); add(10); add(2023);} };
-        Expense e = new Expense(date, 6.45, "Boba", "card", false);
+
+        Expense e = new Expense("Boba", 6.25, "2023-12-10", "credit", "one-time", "fun");
 
         assertTrue(exp.addExpense("sp@gmail.com", e));
     }
@@ -37,8 +36,8 @@ public class ExpenseDataTest {
     public void createExpense_Success2(){
         MongoClient client = MongoClients.create(Constants.URI);
         ExpenseDataManager exp = new ExpenseDataManager(client);
-        List<Integer> date = new ArrayList<>(){ {add(1); add(10); add(2023);} };
-        Expense e = new Expense(date, 50.00, "Amazon Gift Card for Sister!", "card", false);
+
+        Expense e = new Expense("Air Jordans", 300.5, "2020-05-06", "debit", "weekly", "gift");
 
         assertTrue(exp.addExpense("sp@gmail.com", e));
     }
@@ -48,13 +47,13 @@ public class ExpenseDataTest {
     public void updateExpense_Success1(){
         MongoClient client = MongoClients.create(Constants.URI);
         ExpenseDataManager exp = new ExpenseDataManager(client);
-        List<Integer> date = new ArrayList<>(){ {add(14); add(10); add(2023);} };
-        Expense e = new Expense(date, 6.45, "Boba", "card", false);
 
-        List<Integer> newDate = new ArrayList<>(){ {add(12); add(10); add(2023);} };
-        Expense updateE = new Expense(newDate, 4.50, "Milk Tea", "cash", false);
+        Expense e = new Expense("Boba", 6.25, "2023-12-10", "credit", "one-time", "fun");
 
-        assertTrue(exp.updateExpense("sp@gmail.com", e, updateE));
+        UpdateExpense u = new UpdateExpense("Boba", 6.25, "2023-12-10", "credit", "one-time", "fun",
+                "Boba", 7.25, "2023-12-10", "debit", "one-time", "food");
+
+        assertTrue(exp.updateExpense("sp@gmail.com", u));
     }
 
     //update an existing expense
@@ -62,13 +61,13 @@ public class ExpenseDataTest {
     public void updateExpense_Success2(){
         MongoClient client = MongoClients.create(Constants.URI);
         ExpenseDataManager exp = new ExpenseDataManager(client);
-        List<Integer> date = new ArrayList<>(){ {add(1); add(10); add(2023);} };
-        Expense e = new Expense(date, 50.00, "Amazon Gift Card for Sister!", "card", false);
 
-        List<Integer> newDate = new ArrayList<>(){ {add(24); add(10); add(2023);} };
-        Expense updateE = new Expense(newDate, 60.50, "Amazon Shopping", "cash", false);
+        Expense e = new Expense("Air Jordans", 300.5, "2020-05-06", "debit", "weekly", "gift");
 
-        assertTrue(exp.updateExpense("sp@gmail.com", e, updateE));
+        UpdateExpense u = new UpdateExpense("Air Jordans", 300.5, "2020-05-06", "debit", "weekly", "gift",
+                "Air Jordans", 310.5, "2023-12-10", "debit", "one-time", "fun");
+
+        assertTrue(exp.updateExpense("sp@gmail.com", u));
     }
 
     //try to update an expense that does not exist - fail
@@ -77,13 +76,12 @@ public class ExpenseDataTest {
         MongoClient client = MongoClients.create(Constants.URI);
         ExpenseDataManager exp = new ExpenseDataManager(client);
 
-        List<Integer> date = new ArrayList<>(){ {add(12); add(4); add(2022);} };
-        Expense e = new Expense(date, 50.00, "Amazon Gift Card for Sister!", "card", false);
+        Expense e = new Expense("Nike Air Mags", 40000, "2020-05-06", "debit", "one-time", "gift");
 
-        List<Integer> newDate = new ArrayList<>(){ {add(24); add(10); add(2023);} };
-        Expense updateE = new Expense(newDate, 70.50, "Shopping", "card", false);
+        UpdateExpense u = new UpdateExpense("Nike SB Dunk Lows", 300.5, "2020-05-06", "debit", "weekly", "gift",
+                "Nike SB Dunk Highs", 310.5, "2020-05-06", "debit", "one-time", "fun");
 
-        assertFalse(exp.updateExpense("sp@gmail.com", e, updateE));
+        assertFalse(exp.updateExpense("sp@gmail.com", u));
     }
 
 
@@ -92,11 +90,12 @@ public class ExpenseDataTest {
     public void deleteExpense_Success1(){
         MongoClient client = MongoClients.create(Constants.URI);
         ExpenseDataManager exp = new ExpenseDataManager(client);
-        List<Integer> date = new ArrayList<>(){ {add(24); add(2); add(2023);} };
-        Expense e = new Expense(date, 20.45, "Cake", "card", false);
+
+        Expense e = new Expense("Hydraulic Press", 2.95, "2018-01-11", "credit", "weekly", "fun");
+        DeleteExpense d = new DeleteExpense("Hydraulic Press", 2.95);
         exp.addExpense("sp@gmail.com", e);
 
-        assertTrue(exp.deleteExpense("sp@gmail.com", e));
+        assertTrue(exp.deleteExpense("sp@gmail.com", d));
     }
 
     //delete an existing expense
@@ -104,11 +103,12 @@ public class ExpenseDataTest {
     public void deleteExpense_Success2(){
         MongoClient client = MongoClients.create(Constants.URI);
         ExpenseDataManager exp = new ExpenseDataManager(client);
-        List<Integer> date = new ArrayList<>(){ {add(5); add(2); add(2023);} };
-        Expense e = new Expense(date, 18.70, "Earbuds", "cash", false);
+
+        Expense e = new Expense("Street Fighter 6", 59.99, "2023-05-14", "debit", "one-time", "fun");
+        DeleteExpense d = new DeleteExpense("Street Fighter 6", 59.99);
         exp.addExpense("sp@gmail.com", e);
 
-        assertTrue(exp.deleteExpense("sp@gmail.com", e));
+        assertTrue(exp.deleteExpense("sp@gmail.com", d));
     }
 
     //try to delete an expense that does not exist - fail
@@ -116,10 +116,11 @@ public class ExpenseDataTest {
     public void deleteExpense_Fail(){
         MongoClient client = MongoClients.create(Constants.URI);
         ExpenseDataManager exp = new ExpenseDataManager(client);
-        List<Integer> date = new ArrayList<>(){ {add(25); add(6); add(2023);} };
-        Expense e = new Expense(date, 7.12, "Starbucks", "card", false);
 
-        assertFalse(exp.deleteExpense("sp@gmail.com", e));
+        Expense e = new Expense("Fletcher Hagan Magazine", 10.95, "2015-02-16", "credit", "monthly", "food");
+        DeleteExpense d = new DeleteExpense("Fletcher Hagan Action Figure", 50.25);
+        exp.addExpense("sp@gmail.com", e);
+
+        assertFalse(exp.deleteExpense("sp@gmail.com", d));
     }
-     */
 }
