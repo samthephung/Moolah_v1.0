@@ -42,7 +42,8 @@ public class NavAuthController {
             //success message will add up --- or each time you render the dashboard the new expense will come up
             return "dashboard";
         }
-        return "dashboard";
+        //add a notification that the expense does not exist
+        return "addExpense";
     }
 
     //PostMapping -- logging in
