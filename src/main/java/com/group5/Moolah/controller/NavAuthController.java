@@ -98,6 +98,8 @@ public class NavAuthController {
         }
 
         model.addAttribute("expenses", ExpenseService.retrieveRecentExpenseService(id.getUserIdentifier()));
+        //retrieve specific date items
+        //model.addAttribute("daily-expenses",<list of expenses>);
 
         model.addAttribute("daily-expenses", ExpenseManager.retrieveDailyExpenseManager(id.getUserIdentifier(), "12-12-2020"));
         System.out.println(ExpenseManager.retrieveDailyExpenseManager(id.getUserIdentifier(), "12-12-2020"));
