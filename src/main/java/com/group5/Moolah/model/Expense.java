@@ -21,6 +21,10 @@ public class Expense {
         this.recurring = recurring;
     }
 
+    public String toString(){
+        return "name: " + name + " amount: " + amount + " date: " + date;
+    }
+
     public String getName() {
         return name;
     }

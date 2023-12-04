@@ -1,10 +1,9 @@
 package com.group5.Moolah.repositories;
 import com.group5.Moolah.model.*;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.MongoException;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.*;
 
 import com.mongodb.client.model.Updates;
 import org.bson.Document;
@@ -14,6 +13,7 @@ import org.bson.types.ObjectId;
 import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.eq;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -142,6 +142,45 @@ public class ExpenseDataManager {
         return doc;
     }
 
+    //find most recently added documents -- arraylist
+    public List<Expense> findRecentDocuments(String email){
+        //fill with expense objects
+        List <Expense> expenseList = new ArrayList<>();
+        //find the 3 most recent expenses
+        MongoCursor<Document> cursor = collection.find().sort(new Document("_id", -1)).limit(3).iterator();
+
+        try{
+            while(cursor.hasNext()){
+                Document current = cursor.next();
+                System.out.println(current.getString("name"));
+                String name = "";
+                double amount = 0;
+                String date = "";
+                String method = "";
+                String recurring = "";
+                String category = "";
+
+                Expense e = new Expense(name, amount, date, method, recurring, category);
+
+                //initialize the expense object
+                //set name
+                e.setName(current.getString("name"));
+                //set amount
+                e.setAmount(current.getDouble("amount"));
+                //set date
+                e.setDate(current.getString("date"));
+
+                expenseList.add(e);
+            }
+        } finally{
+            cursor.close();
+        }
+
+        //3 most recent documents are returned
+        //store values -- only name, amount and date
+        return expenseList;
+    }
+
     //update existing expense
     /**
      * Update an existing expense in the ExpenseData collection. Each user is identified by
@@ -243,4 +282,21 @@ public class ExpenseDataManager {
         collection.deleteMany(new Document());
     }
 
+    public static void main(String []args){
+
+        //testing the find recent documents
+        try (MongoClient client = MongoClients.create(Constants.URI)) {
+            ExpenseDataManager ed = new ExpenseDataManager(client);
+
+            //List <Document> list;
+            List<Expense> list;
+            list = ed.findRecentDocuments("sphung@gmail.com");
+
+            System.out.println(list.get(0).toString());
+            System.out.println(list.get(1).toString());
+            System.out.println(list.get(2).toString());
+
+        }
+
+    }
 }
