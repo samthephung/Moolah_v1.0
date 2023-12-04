@@ -28,10 +28,8 @@ public class NavAuthController {
 
         System.out.println("NAME: " + expense.getName());
         //call service for adding an expense
-        if(ExpenseService.addExpenseService(id.getUserIdentifier(), expense)){
-            //success message will add up --- or each time you render the dashboard the new expense will come up
-            return "addExpense";
-        }
+        //success message will add up --- or each time you render the dashboard the new expense will come up
+        ExpenseService.addExpenseService(id.getUserIdentifier(), expense);
         return "addExpense";
     }
 
@@ -152,7 +150,7 @@ public class NavAuthController {
 
     @GetMapping("/calculate")
     public String calculatePage(Model model){
-        if(id.getUserIdentifier().equals("")){
+        if(id.getUserIdentifier().isEmpty()){
             return "home";
         }
         model.addAttribute("totals", ExpenseService.calculateDailyExpenseService(id.getUserIdentifier(), id.getCalculateDate()));
