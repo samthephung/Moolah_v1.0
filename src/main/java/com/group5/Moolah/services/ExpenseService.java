@@ -1,5 +1,6 @@
 package com.group5.Moolah.services;
 
+import com.group5.Moolah.model.DeleteExpense;
 import com.group5.Moolah.model.Expense;
 import com.group5.Moolah.repositories.ExpenseManager;
 
@@ -14,7 +15,11 @@ public class ExpenseService {
         return ExpenseManager.addExpenseManager(id, e);
     }
 
-    //return arraylist of objects
+    public static Boolean deleteExpenseService(String id, DeleteExpense d){
+        return ExpenseManager.deleteExpenseManager(id, d);
+    }
+
+    //return arraylist of objects -- return all current expenses for a specific user
     public static Boolean retrieveExpenseService(String emailAddress, String name){
         return true;
     }

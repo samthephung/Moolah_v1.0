@@ -120,6 +120,28 @@ public class ExpenseDataManager {
         return doc;
     }
 
+    /**
+     * Retrieve the specified document based on the user's email
+     * and the Expense data.
+     *
+     * @param email String representing the user's email associated with their account
+     * @param d Expense Object which holds all information about an expense
+     * @return Document of the ExpenseData collection that matches the given parameters, else null
+     */
+    public Document findDocumentToDelete(String email, DeleteExpense d){
+        String name = d.getName();
+        double amount = d.getAmount();
+
+        //find the first document
+        Document doc = collection
+                .find(and(eq("email", email),
+                        eq("name", name),
+                        eq("amount", amount)
+                )).first();
+
+        return doc;
+    }
+
     //update existing expense
     /**
      * Update an existing expense in the ExpenseData collection. Each user is identified by
@@ -170,13 +192,13 @@ public class ExpenseDataManager {
      * to delete an expense that does not exist, return false.
      *
      * @param email String representing the user's email associated with their account
-     * @param e Expense Object which holds all information about an expense
+     * @param d Expense Object which holds all information about an expense
      * @return true if the expense document was deleted successfully, else false
      */
-    public Boolean deleteExpense(String email, Expense e){
+    public Boolean deleteExpense(String email, DeleteExpense d){
         //delete the most recent expense if there are multiple ones (first one)
 
-        Document doc = findDocument(email, e);
+        Document doc = findDocumentToDelete(email, d);
         if(doc != null){
             Bson query = eq("_id", doc.get("_id"));
 

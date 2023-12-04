@@ -1,5 +1,6 @@
 package com.group5.Moolah.controller;
 
+import com.group5.Moolah.model.DeleteExpense;
 import com.group5.Moolah.model.Expense;
 import com.group5.Moolah.model.User;
 import com.group5.Moolah.model.UserId;
@@ -20,12 +21,24 @@ public class NavAuthController {
     private UserId id = new UserId("");
 
     //PostMapping for Expenses start here!
-    @PostMapping("/addExpense")
+    @PostMapping("/addExpenseSubmit")
     public String submitExpenseAdd(@ModelAttribute Expense expense) {
 
         System.out.println("NAME: " + expense.getName());
         //call service for adding an expense
         if(ExpenseService.addExpenseService(id.getUserIdentifier(), expense)){
+            //success message will add up --- or each time you render the dashboard the new expense will come up
+            return "dashboard";
+        }
+        return "dashboard";
+    }
+
+    @PostMapping("/deleteExpenseSubmit")
+    public String submitExpenseDelete(@ModelAttribute DeleteExpense deleteExpense) {
+
+        System.out.println("NAME: " + deleteExpense.getName());
+        //call service for adding an expense
+        if(ExpenseService.deleteExpenseService(id.getUserIdentifier(), deleteExpense)){
             //success message will add up --- or each time you render the dashboard the new expense will come up
             return "dashboard";
         }
