@@ -23,63 +23,17 @@
         </div>
     </nav>
     <div class="Update-form">
-        <h2>Calculate Expense</h2>
-        <form class = "calculate" action="/calculateResult">
-            <label for="calculate-expenses">Calculate expenses for:</label>
-            <select id="calculate-expenses" required>
-                <option value="">Select period</option>
-                <option value="day">Day</option>
-                <option value="month">Month</option>
-                <option value="year">Year</option>
-            </select>
-            <input type="date" id="date-input" style="display: none;" required>
-            <select id="month-select" style="display: none;" required>
-                <!-- Add options for each month -->
-                <option value="">Select month</option>
-                <option value="january">January</option>
-                <option value="february">February</option>
-                <option value="march">March</option>
-                <option value="april">April</option>
-                <option value="may">May</option>
-                <option value="june">June</option>
-                <option value="july">July</option>
-                <option value="august">August</option>
-                <option value="september">September</option>
-                <option value="october">October</option>
-                <option value="november">November</option>
-                <option value="december">December</option>
-            </select>
-            <select id="year-select" style="display: none;" required>
-                <!-- Add options for each year -->
-                <option value="">Select year</option>
-                <option value="2024">2024</option>
-                <option value="2023">2023</option>
-                <option value="2022">2022</option>
-                <option value="2021">2021</option>
-                <option value="2020">2020</option>
-                <option value="2019">2019</option>
-                <option value="2018">2018</option>
-                <option value="2017">2017</option>
-                <option value="2016">2016</option>
-                <option value="2015">2015</option>
-                <option value="2014">2014</option>
-                <option value="2013">2013</option>
-                <option value="2012">2012</option>
-                <option value="2011">2011</option>
-                <option value="2010">2010</option>
-                <option value="2009">2009</option>
-                <option value="2008">2008</option>
-                <option value="2007">2007</option>
-                <option value="2006">2006</option>
-                <option value="2005">2005</option>
-                <option value="2004">2005</option>
-                <option value="2003">2003</option>
-                <option value="2002">2002</option>
-                <option value="2001">2001</option>
-                <option value="2000">2000</option>
-            </select>
-            <button type="submit">Calculate</button>
+        <h2>Calculate Expenses from Date</h2>
+        <form action = "/calculateExpensesAtDate" method="post">
+            <input type="date" id="date" name="date" placeholder="Select date" required>
+            <button type="submit">Update</button>
         </form>
+        <h2></h2>
+        <h2>Total at Date</h2>
+        <!-- I know this doesnt need to be a list but idk enough about html to change it -->
+        <ul th:each="total : ${totals}">
+            <li><span th:text="'$'+${totals}"></span></li>
+        </ul>
     </div>
 
     <script>

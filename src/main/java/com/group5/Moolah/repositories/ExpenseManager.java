@@ -56,4 +56,12 @@ public class ExpenseManager {
         }
     }
 
+    public static double calculateDailyExpenseManager(String id, String date) {
+        try (MongoClient client = MongoClients.create(Constants.URI)) {
+            CalculationManager cm = new CalculationManager(client);
+
+            return cm.getDayTotal(id, date);
+        }
+    }
+
 }

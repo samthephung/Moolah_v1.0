@@ -23,4 +23,10 @@ public class UserId {
 
     public String getChosenDate() { return chosenDate; }
 
+    private String calculateDate;
+
+    public void setCalculateDate(String chosenDate) { this.calculateDate = chosenDate; }
+
+    public String getCalculateDate() { return calculateDate; }
+
 }

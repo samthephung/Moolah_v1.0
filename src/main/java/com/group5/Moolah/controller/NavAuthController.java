@@ -74,7 +74,7 @@ public class NavAuthController {
         }
 
         id.setChosenDate(date);
-        
+
         return "dashboard";
     }
 
@@ -102,6 +102,14 @@ public class NavAuthController {
         else{
             return "login";
         }
+    }
+
+    @PostMapping("/calculateExpensesAtDate")
+    public String calculateExpensesAtDate(String date){
+
+        id.setCalculateDate(date);
+
+        return "calculate";
     }
 
     //GetMapping returns views  --  @GetMapping(<some path endpoint>)
@@ -143,10 +151,12 @@ public class NavAuthController {
     }
 
     @GetMapping("/calculate")
-    public String calculatePage(){
-        if(id.getUserIdentifier().isEmpty()){
+    public String calculatePage(Model model){
+        if(id.getUserIdentifier().equals("")){
             return "home";
         }
+        model.addAttribute("totals", ExpenseService.calculateDailyExpenseService(id.getUserIdentifier(), id.getCalculateDate()));
+
         return "calculate";
     }
 

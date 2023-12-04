@@ -35,5 +35,9 @@ public class ExpenseService {
         return ExpenseManager.retrieveDailyExpenseManager(id, date);
     }
 
+    public static double calculateDailyExpenseService(String id, String date){
+        return ExpenseManager.calculateDailyExpenseManager(id, date);
+    }
+
 
 }
