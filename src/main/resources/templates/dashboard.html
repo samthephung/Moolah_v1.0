@@ -34,7 +34,11 @@
         </div>
     </section>
     <section class="daily-expenses">
-        <h2>Expenses for <input type="date" id="current-day"></h2>
+        <h2>Expenses for Date</h2>
+        <form action = "/getExpensesAtDate" method="post">
+            <input type="date" id="date" name="date" placeholder="Select date" required>
+            <button type="submit">Update</button>
+        </form>
         <div class="daily-expenses-list">
             <ul>
                 <!-- Each list item represents an expense for the current day -->

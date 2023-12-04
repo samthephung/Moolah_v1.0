@@ -46,4 +46,14 @@ public class ExpenseManager {
         }
     }
 
+    public static List<Expense> retrieveDailyExpenseManager(String id, String date) {
+
+        try (MongoClient client = MongoClients.create(Constants.URI)) {
+            ExpenseDataManager ed = new ExpenseDataManager(client);
+            //retrieve an arraylist of the expense objects
+            System.out.println(ed.retrieveDailyExpenses(id, date));
+            return ed.retrieveDailyExpenses(id, date);
+        }
+    }
+
 }

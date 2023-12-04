@@ -1,6 +1,7 @@
 package com.group5.Moolah.controller;
 
 import com.group5.Moolah.model.*;
+import com.group5.Moolah.repositories.ExpenseManager;
 import com.group5.Moolah.services.AccountService;
 import com.group5.Moolah.services.ExpenseService;
 import org.springframework.context.annotation.Scope;
@@ -57,6 +58,12 @@ public class NavAuthController {
         return "addExpense";
     }
 
+    @PostMapping("/getExpensesAtDate")
+    public String getExpensesAtDate(String date){
+        ExpenseManager.retrieveDailyExpenseManager(id.getUserIdentifier(), date);
+        return "dashboard";
+    }
+
     //PostMapping -- logging in
     @PostMapping("/signupSubmitForm")
     public String signupFormSubmit(@ModelAttribute User user){
@@ -91,6 +98,9 @@ public class NavAuthController {
         }
 
         model.addAttribute("expenses", ExpenseService.retrieveRecentExpenseService(id.getUserIdentifier()));
+
+        model.addAttribute("daily-expenses", ExpenseManager.retrieveDailyExpenseManager(id.getUserIdentifier(), "12-12-2020"));
+        System.out.println(ExpenseManager.retrieveDailyExpenseManager(id.getUserIdentifier(), "12-12-2020"));
 
         return "dashboard";
     }

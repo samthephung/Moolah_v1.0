@@ -147,7 +147,46 @@ public class ExpenseDataManager {
         //fill with expense objects
         List <Expense> expenseList = new ArrayList<>();
         //find the 3 most recent expenses
-        MongoCursor<Document> cursor = collection.find().sort(new Document("_id", -1)).limit(3).iterator();
+        MongoCursor<Document> cursor = collection.find(and(eq("email", email))).sort(new Document("_id", -1)).limit(3).iterator();
+
+        try{
+            while(cursor.hasNext()){
+                Document current = cursor.next();
+                System.out.println(current.getString("name"));
+                String name = "";
+                double amount = 0;
+                String date = "";
+                String method = "";
+                String recurring = "";
+                String category = "";
+
+                Expense e = new Expense(name, amount, date, method, recurring, category);
+
+                //initialize the expense object
+                //set name
+                e.setName(current.getString("name"));
+                //set amount
+                e.setAmount(current.getDouble("amount"));
+                //set date
+                e.setDate(current.getString("date"));
+
+                expenseList.add(e);
+            }
+        } finally{
+            cursor.close();
+        }
+
+        //3 most recent documents are returned
+        //store values -- only name, amount and date
+        return expenseList;
+    }
+
+    public List<Expense> retrieveDailyExpenses(String email, String chosenDate){
+        //fill with expense objects
+        List <Expense> expenseList = new ArrayList<>();
+        //find the 3 most recent expenses
+        MongoCursor<Document> cursor = collection.find(and(eq("email", email), eq("date", chosenDate))
+        ).sort(new Document("_id", -1)).limit(3).iterator();
 
         try{
             while(cursor.hasNext()){
