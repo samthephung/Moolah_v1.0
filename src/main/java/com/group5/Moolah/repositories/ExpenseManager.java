@@ -50,8 +50,8 @@ public class ExpenseManager {
 
         try (MongoClient client = MongoClients.create(Constants.URI)) {
             ExpenseDataManager ed = new ExpenseDataManager(client);
-            //retrieve an arraylist of the expense objects
-            System.out.println(ed.retrieveDailyExpenses(id, date));
+            //retrieve an arraylist of the expense objects from a certain date
+            //System.out.println(ed.retrieveDailyExpenses(id, date));
             return ed.retrieveDailyExpenses(id, date);
         }
     }

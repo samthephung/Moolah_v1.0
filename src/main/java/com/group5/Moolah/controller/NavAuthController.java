@@ -101,8 +101,10 @@ public class NavAuthController {
         //retrieve specific date items
         //model.addAttribute("daily-expenses",<list of expenses>);
 
-        model.addAttribute("daily-expenses", ExpenseManager.retrieveDailyExpenseManager(id.getUserIdentifier(), "12-12-2020"));
-        System.out.println(ExpenseManager.retrieveDailyExpenseManager(id.getUserIdentifier(), "12-12-2020"));
+
+        //not sure if you can have 2 model.addAttributes in one of these functions
+        model.addAttribute("dailyexpenses", ExpenseManager.retrieveDailyExpenseManager(id.getUserIdentifier(), "12-12-2020"));
+        System.out.println(ExpenseManager.retrieveDailyExpenseManager(id.getUserIdentifier(), "2020-12-12"));
 
         return "dashboard";
     }
