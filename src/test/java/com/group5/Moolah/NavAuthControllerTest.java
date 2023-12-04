@@ -6,89 +6,92 @@ import com.group5.Moolah.repositories.Constants;
 import com.group5.Moolah.repositories.UserDataManager;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
-import org.junit.*;
+import org.junit.jupiter.api.*;
+
 import static org.junit.Assert.*;
 
 public class NavAuthControllerTest {
-
-    private User testUser = new User("John Doe", "johndoe@example.com", "1234ascd");
     private NavAuthController controller = new NavAuthController();
-    /*
-    @Test
-    public void testDashboardPageFail() {
-        assertEquals(controller.dashboardPage(), "home");
-    }*/
+    @Nested
+    class SuccessTests {
+        private User testUser = new User("John Doe", "johndoe@example.com", "1234ascd");
 
-    @Test
-    public void testContactAuthPageFail() {
-        assertEquals(controller.contactAuthPage(), "home");
+        @BeforeAll
+        public static void setup() {
+            MongoClient client = MongoClients.create(Constants.URI);
+            UserDataManager udm = new UserDataManager(client);
+            udm.createUser("John Doe", "johndoe@example.com", "1234ascd");
+        }
+
+        @BeforeEach
+        public void beforeEachTestSetup() {
+            controller.loginFormSubmit(testUser);
+        }
+
+        @Test
+        public void testSignUpAlreadyExistingUser() {
+            Assertions.assertEquals("signup", controller.signupFormSubmit(testUser));
+        }
+
+        @Test
+        public void testLoginSuccess() {
+            Assertions.assertEquals("dashboard", controller.loginFormSubmit(testUser));
+        }
+
+        @Test
+        public void testContactAuthPageSuccess() {
+            Assertions.assertEquals("contactSignedIn", controller.contactAuthPage());
+        }
+
+        @Test
+        public void testAddExpensePageSuccess() {
+            Assertions.assertEquals("addExpense", controller.addExpensePage());
+        }
+
+        @Test
+        public void testCalculatePageSuccess() {
+            Assertions.assertEquals("calculate", controller.calculatePage());
+        }
+
+        @Test
+        public void testCalculateResultPageSuccess() {
+            Assertions.assertEquals("calculateResult", controller.calculateResultPage());
+        }
+
+        @AfterAll
+        public static void cleanup() {
+            MongoClient client = MongoClients.create(Constants.URI);
+            UserDataManager udm = new UserDataManager(client);
+            udm.deleteUser("johndoe@example.com");
+        }
     }
 
-    @Test
-    public void testAddExpensePageFail() {
-        assertEquals(controller.addExpensePage(), "home");
-    }
+    @Nested
+    class FailTests {
+        @Test
+        public void testContactAuthPageFail() {
+            Assertions.assertEquals("home", controller.contactAuthPage());
+        }
 
-    @Test
-    public void testCalculatePageFail() {
-        assertEquals(controller.calculatePage(), "home");
-    }
+        @Test
+        public void testAddExpensePageFail() {
+            Assertions.assertEquals("home", controller.addExpensePage());
+        }
 
-    @Test
-    public void testCalculateResultPageFail() {
-        assertEquals(controller.calculateResultPage(), "home");
-    }
+        @Test
+        public void testCalculatePageFail() {
+            Assertions.assertEquals("home", controller.calculatePage());
+        }
 
-    @Test
-    public void testSignUp() {
-        assertEquals(controller.signupFormSubmit(testUser), "dashboard");
-    }
+        @Test
+        public void testCalculateResultPageFail() {
+            Assertions.assertEquals("home", controller.calculateResultPage());
+        }
 
-    @Test
-    public void testSignUpAlreadyExistingUser() {
-        assertEquals(controller.signupFormSubmit(testUser), "signup");
-    }
-
-    @Test
-    public void testLoginSuccess() {
-        assertEquals(controller.loginFormSubmit(testUser), "dashboard");
-    }
-    /*
-    @Test
-    public void testDashboardPageSuccess() {
-        assertEquals(controller.dashboardPage(), "dashboard");
-    }*/
-
-    @Test
-    public void testContactAuthPageSuccess() {
-        assertEquals(controller.contactAuthPage(), "contactSignedIn");
-    }
-
-    @Test
-    public void testAddExpensePageSuccess() {
-        assertEquals(controller.addExpensePage(), "addExpense");
-    }
-
-    @Test
-    public void testCalculatePageSuccess() {
-        assertEquals(controller.calculatePage(), "calculate");
-    }
-
-    @Test
-    public void testCalculateResultPageSuccess() {
-        assertEquals(controller.calculateResultPage(), "calculateResult");
-    }
-
-    @Test
-    public void testLoginFail() {
-        User failUser = new User("Jane Doe", "janedoe@example.com", "0987zxyv");
-        assertEquals(controller.loginFormSubmit(failUser), "login");
-    }
-
-    @AfterClass
-    public void cleanup() {
-        MongoClient client = MongoClients.create(Constants.URI);
-        UserDataManager udm = new UserDataManager(client);
-        udm.deleteUser(testUser.getEmailAddress());
+        @Test
+        public void testLoginFail() {
+            User failUser = new User("Jane Doe", "janedoe@example.com", "0987zxyv");
+            Assertions.assertEquals(controller.loginFormSubmit(failUser), "login");
+        }
     }
 }
