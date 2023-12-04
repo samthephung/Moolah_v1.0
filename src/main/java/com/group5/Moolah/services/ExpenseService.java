@@ -31,5 +31,9 @@ public class ExpenseService {
         return ExpenseManager.retrieveRecentExpenseManager(id);
     }
 
+    public static List<Expense> retrieveDailyExpenseService(String id, String date){
+        return ExpenseManager.retrieveDailyExpenseManager(id, date);
+    }
+
 
 }

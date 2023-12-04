@@ -17,4 +17,10 @@ public class UserId {
         this.userIdentifier = userIdentifier;
     }
 
+    private String chosenDate;
+
+    public void setChosenDate(String chosenDate) { this.chosenDate = chosenDate; }
+
+    public String getChosenDate() { return chosenDate; }
+
 }

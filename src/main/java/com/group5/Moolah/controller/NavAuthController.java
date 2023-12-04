@@ -60,7 +60,9 @@ public class NavAuthController {
 
     @PostMapping("/getExpensesAtDate")
     public String getExpensesAtDate(String date){
-        ExpenseManager.retrieveDailyExpenseManager(id.getUserIdentifier(), date);
+
+        id.setChosenDate(date);
+        
         return "dashboard";
     }
 
@@ -100,10 +102,11 @@ public class NavAuthController {
         model.addAttribute("expenses", ExpenseService.retrieveRecentExpenseService(id.getUserIdentifier()));
         //retrieve specific date items
         //model.addAttribute("daily-expenses",<list of expenses>);
+        //System.out.println(id.getChosenDate());
 
         //not sure if you can have 2 model.addAttributes in one of these functions
-        model.addAttribute("dailyexpenses", ExpenseManager.retrieveDailyExpenseManager(id.getUserIdentifier(), "12-12-2020"));
-        System.out.println(ExpenseManager.retrieveDailyExpenseManager(id.getUserIdentifier(), "2020-12-12"));
+        model.addAttribute("dailyexpenses", ExpenseService.retrieveDailyExpenseService(id.getUserIdentifier(), id.getChosenDate()));
+        //System.out.println(ExpenseService.retrieveDailyExpenseService(id.getUserIdentifier(), "2020-12-12"));
 
         return "dashboard";
     }
