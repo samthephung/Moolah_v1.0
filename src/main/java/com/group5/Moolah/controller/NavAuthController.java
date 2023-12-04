@@ -22,18 +22,22 @@ public class NavAuthController {
     //PostMapping for Expenses start here!
     @PostMapping("/addExpenseSubmit")
     public String submitExpenseAdd(@ModelAttribute Expense expense) {
+        if(id.getUserIdentifier().isEmpty()){
+            return "home";
+        }
 
         System.out.println("NAME: " + expense.getName());
         //call service for adding an expense
-        if(ExpenseService.addExpenseService(id.getUserIdentifier(), expense)){
-            //success message will add up --- or each time you render the dashboard the new expense will come up
-            return "addExpense";
-        }
+        //success message will add up --- or each time you render the dashboard the new expense will come up
+        ExpenseService.addExpenseService(id.getUserIdentifier(), expense);
         return "addExpense";
     }
 
     @PostMapping("/updateExpenseSubmit")
     public String submitExpenseUpdate(@ModelAttribute UpdateExpense updateExpense) {
+        if(id.getUserIdentifier().isEmpty()){
+            return "home";
+        }
 
         System.out.println("NAME: " + updateExpense.getName());
         //call service for adding an expense
@@ -47,6 +51,9 @@ public class NavAuthController {
 
     @PostMapping("/deleteExpenseSubmit")
     public String submitExpenseDelete(@ModelAttribute DeleteExpense deleteExpense) {
+        if(id.getUserIdentifier().isEmpty()){
+            return "home";
+        }
 
         System.out.println("NAME: " + deleteExpense.getName());
         //call service for adding an expense
@@ -60,6 +67,9 @@ public class NavAuthController {
 
     @PostMapping("/getExpensesAtDate")
     public String getExpensesAtDate(String date){
+        if(id.getUserIdentifier().isEmpty()){
+            return "home";
+        }
 
         id.setChosenDate(date);
 
@@ -103,7 +113,7 @@ public class NavAuthController {
     //GetMapping returns views  --  @GetMapping(<some path endpoint>)
     @GetMapping("/dashboard")
     public String dashboardPage(Model model){
-        if(id.getUserIdentifier().equals("")){
+        if(id.getUserIdentifier().isEmpty()){
             return "home";
         }
 
@@ -122,7 +132,7 @@ public class NavAuthController {
     @GetMapping("/contactAuth")
     public String contactAuthPage(){
 
-        if(id.getUserIdentifier().equals("")){
+        if(id.getUserIdentifier().isEmpty()){
             return "home";
         }
 
@@ -132,7 +142,7 @@ public class NavAuthController {
 
     @GetMapping("/addExpense")
     public String addExpensePage(){
-        if(id.getUserIdentifier().equals("")){
+        if(id.getUserIdentifier().isEmpty()){
             return "home";
         }
         return "addExpense";
@@ -140,7 +150,7 @@ public class NavAuthController {
 
     @GetMapping("/calculate")
     public String calculatePage(Model model){
-        if(id.getUserIdentifier().equals("")){
+        if(id.getUserIdentifier().isEmpty()){
             return "home";
         }
         model.addAttribute("totals", ExpenseService.calculateDailyExpenseService(id.getUserIdentifier(), id.getCalculateDate()));
@@ -150,7 +160,7 @@ public class NavAuthController {
 
     @GetMapping("/calculateResult")
     public String calculateResultPage(){
-        if(id.getUserIdentifier().equals("")){
+        if(id.getUserIdentifier().isEmpty()){
             return "home";
         }
         return "calculateResult";
