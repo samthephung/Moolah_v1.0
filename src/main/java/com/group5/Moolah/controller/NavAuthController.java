@@ -91,6 +91,8 @@ public class NavAuthController {
         }
 
         model.addAttribute("expenses", ExpenseService.retrieveRecentExpenseService(id.getUserIdentifier()));
+        //retrieve specific date items
+        //model.addAttribute("daily-expenses",<list of expenses>);
 
         return "dashboard";
     }

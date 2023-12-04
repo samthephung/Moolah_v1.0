@@ -146,7 +146,7 @@ public class ExpenseDataManager {
     public List<Expense> findRecentDocuments(String email){
         //fill with expense objects
         List <Expense> expenseList = new ArrayList<>();
-        //find the 3 most recent expenses
+        //find the 3 most recent expenses -- find(eq(email, email))************************************************
         MongoCursor<Document> cursor = collection.find().sort(new Document("_id", -1)).limit(3).iterator();
 
         try{
