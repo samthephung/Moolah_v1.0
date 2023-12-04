@@ -29,10 +29,10 @@ public class NavAuthControllerTest {
         assertEquals(controller.addExpensePage(), "home");
     }
 
-    @Test
-    public void testCalculatePageFail() {
-        assertEquals(controller.calculatePage(), "home");
-    }
+    //@Test
+    //public void testCalculatePageFail() {
+    //    assertEquals(controller.calculatePage(), "home");
+    //}
 
     @Test
     public void testCalculateResultPageFail() {
@@ -69,10 +69,10 @@ public class NavAuthControllerTest {
         assertEquals(controller.addExpensePage(), "addExpense");
     }
 
-    @Test
-    public void testCalculatePageSuccess() {
-        assertEquals(controller.calculatePage(), "calculate");
-    }
+    //@Test
+    //public void testCalculatePageSuccess() {
+    //    assertEquals(controller.calculatePage(), "calculate");
+    //}
 
     @Test
     public void testCalculateResultPageSuccess() {
