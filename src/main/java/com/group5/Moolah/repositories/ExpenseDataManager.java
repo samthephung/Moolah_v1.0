@@ -149,12 +149,31 @@ public class ExpenseDataManager {
      * to update an expense that does not exist, return false.
      *
      * @param email String representing the user's email associated with their account
-     * @param e Expense Object which holds all information about an expense
-     * @param updatedExpense Expense Object which hold any information to update the expense
+     * @param u Expense Object which holds both the old expense and updated expense to update
      * @return true if the expense document was updated successfully, else false
      */
-    public Boolean updateExpense(String email, Expense e, Expense updatedExpense){
+    public Boolean updateExpense(String email, UpdateExpense u){
+        //name, amount, date, method, recurring category
+        //build existing expense and check if it exists
+        Expense e = new Expense(
+                u.getName(),
+                u.getAmount(),
+                u.getDate(),
+                u.getMethod(),
+                u.getRecurring(),
+                u.getCategory()
+        );
 
+        Expense updatedExpense = new Expense(
+                u.getName_update(),
+                u.getAmount_update(),
+                u.getDate_update(),
+                u.getMethod_update(),
+                u.getRecurring_update(),
+                u.getCategory_update()
+        );
+
+        //check if the document exists
         Document doc = findDocument(email, e);
 
         String name = e.getName();
@@ -177,6 +196,7 @@ public class ExpenseDataManager {
                 System.out.println("User has updated this expense.");
             }
             else{
+                System.out.println("Unable to update expense.");
                 return false;
             }
         } catch (MongoException m) {

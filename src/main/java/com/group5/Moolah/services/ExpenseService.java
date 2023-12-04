@@ -2,6 +2,7 @@ package com.group5.Moolah.services;
 
 import com.group5.Moolah.model.DeleteExpense;
 import com.group5.Moolah.model.Expense;
+import com.group5.Moolah.model.UpdateExpense;
 import com.group5.Moolah.repositories.ExpenseManager;
 
 public class ExpenseService {
@@ -15,6 +16,10 @@ public class ExpenseService {
         return ExpenseManager.addExpenseManager(id, e);
     }
 
+    public static Boolean updateExpenseService(String id, UpdateExpense u){
+        return ExpenseManager.updateExpenseManager(id,u);
+    }
+
     public static Boolean deleteExpenseService(String id, DeleteExpense d){
         return ExpenseManager.deleteExpenseManager(id, d);
     }
@@ -24,10 +29,10 @@ public class ExpenseService {
         return true;
     }
 
-    /*
-    //return true if updated expense occurs
-    public static Boolean updateExpenseService(){ return true;}
 
+    //return true if updated expense occurs
+
+    /*
     //return true if delete expense is possible
     public static Boolean deleteExpenseService(){
         return true;

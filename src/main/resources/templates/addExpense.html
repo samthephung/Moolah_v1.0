@@ -80,21 +80,21 @@
     </div>
     <div class="Update-form">
         <h2>Update an Expense</h2>
-        <form action = "finished/userHome.html">
-            <input type="name" id="name" placeholder="Name of expense" required>
+        <form action = "/updateExpenseSubmit" method="post">
+            <input type="name" id="name" name="name" placeholder="Name of expense" required>
             <br>
-            <input type="number" id="number" placeholder="Enter amount" required>
+            <input type="number" id="number" name="amount" placeholder="Enter amount" required>
             <br>
-            <input type="date" id="date" placeholder="Select date" required>
+            <input type="date" id="date" name="date" placeholder="Select date" required>
             <br>
-            <select id="method" required>
+            <select id="method" name="method" required>
                 <option value="">Select method</option>
                 <option value="cash">Cash</option>
                 <option value="debit">Debit</option>
                 <option value="credit">Credit</option>
             </select>
             <br>
-            <select id="recurring" required>
+            <select id="recurring" name="recurring" required>
                 <option value="">Select recurrence</option>
                 <option value="one-time">One time expense</option>
                 <option value="weekly">Weekly expense</option>
@@ -103,7 +103,41 @@
                 <option value="yearly">Yearly expense</option>
             </select>
             <br>
-            <select id="category" required>
+            <select id="category" name="category" required>
+                <option value="">Select category</option>
+                <option value="food">Food</option>
+                <option value="groceries">Groceries</option>
+                <option value="rent">Rent</option>
+                <option value="fun">Fun</option>
+                <option value="gift">Gift</option>
+                <option value="other">Other</option>
+            </select>
+            <br>
+            <h2>Updated Values:</h2>
+            <h3>If there are any values you want to keep the same, enter them again unchanged.</h3>
+            <input type="name" id="name" name="name_update" placeholder="Name of expense" required>
+            <br>
+            <input type="number" id="number" name="amount_update" placeholder="Enter amount" required>
+            <br>
+            <input type="date" id="date" name="date_update" placeholder="Select date" required>
+            <br>
+            <select id="method" name="method_update" required>
+                <option value="">Select method</option>
+                <option value="cash">Cash</option>
+                <option value="debit">Debit</option>
+                <option value="credit">Credit</option>
+            </select>
+            <br>
+            <select id="recurring" name="recurring_update" required>
+                <option value="">Select recurrence</option>
+                <option value="one-time">One time expense</option>
+                <option value="weekly">Weekly expense</option>
+                <option value="biweekly">Biweekly expense</option>
+                <option value="monthly">Monthly expense</option>
+                <option value="yearly">Yearly expense</option>
+            </select>
+            <br>
+            <select id="category" name="category_update" required>
                 <option value="">Select category</option>
                 <option value="food">Food</option>
                 <option value="groceries">Groceries</option>

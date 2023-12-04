@@ -1,9 +1,6 @@
 package com.group5.Moolah.controller;
 
-import com.group5.Moolah.model.DeleteExpense;
-import com.group5.Moolah.model.Expense;
-import com.group5.Moolah.model.User;
-import com.group5.Moolah.model.UserId;
+import com.group5.Moolah.model.*;
 import com.group5.Moolah.services.AccountService;
 import com.group5.Moolah.services.ExpenseService;
 import org.springframework.context.annotation.Scope;
@@ -31,6 +28,19 @@ public class NavAuthController {
             return "dashboard";
         }
         return "dashboard";
+    }
+
+    @PostMapping("/updateExpenseSubmit")
+    public String submitExpenseUpdate(@ModelAttribute UpdateExpense updateExpense) {
+
+        System.out.println("NAME: " + updateExpense.getName());
+        //call service for adding an expense
+        if(ExpenseService.updateExpenseService(id.getUserIdentifier(), updateExpense)){
+            //success message will add up --- or each time you render the dashboard the new expense will come up
+            return "dashboard";
+        }
+        //add a notification that the expense does not exist -- could not update
+        return "addExpense";
     }
 
     @PostMapping("/deleteExpenseSubmit")
