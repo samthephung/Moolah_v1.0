@@ -40,11 +40,9 @@
             <button type="submit">Update</button>
         </form>
         <div class="daily-expenses-list">
-            <ul>
+            <ul th:each="dailyexpense : ${dailyexpenses}">
                 <!-- Each list item represents an expense for the current day -->
-                <li>Expense 1</li>
-                <li>Expense 2</li>
-                <li>Expense 3</li>
+                <li><b><span th:text="${dailyexpense.name}"></span></b> <span th:text="'---- $'+${dailyexpense.amount}"></span></li>
                 <!-- Add more list items as needed -->
             </ul>
             <a href="/addExpense" class="add-expense-button">+</a>
