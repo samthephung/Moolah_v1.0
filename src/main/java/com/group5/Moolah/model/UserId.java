@@ -7,8 +7,6 @@ public class UserId {
         this.userIdentifier = userIdentifier;
     }
 
-    public UserId(){ this.userIdentifier = "";}
-
     public String getUserIdentifier() {
         return userIdentifier;
     }

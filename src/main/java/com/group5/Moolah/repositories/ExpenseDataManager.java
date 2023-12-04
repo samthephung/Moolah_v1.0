@@ -146,7 +146,7 @@ public class ExpenseDataManager {
     public List<Expense> findRecentDocuments(String email){
         //fill with expense objects
         List <Expense> expenseList = new ArrayList<>();
-        //find the 3 most recent expenses -- find(eq(email, email))************************************************
+        //find the 3 most recent expenses
         MongoCursor<Document> cursor = collection.find(and(eq("email", email))).sort(new Document("_id", -1)).limit(3).iterator();
 
         try{
@@ -184,7 +184,7 @@ public class ExpenseDataManager {
     public List<Expense> retrieveDailyExpenses(String email, String chosenDate){
         //fill with expense objects
         List <Expense> expenseList = new ArrayList<>();
-        //find the 3 most recent expenses -- find(eq(email, email))************************************************
+        //find the 3 most recent expenses
         MongoCursor<Document> cursor = collection.find(and(eq("email", email), eq("date", chosenDate))).sort(new Document("_id", -1)).limit(3).iterator();
 
         try{
@@ -318,23 +318,5 @@ public class ExpenseDataManager {
     //delete later -- just for testing purposes
     public void removeAllExpenses(){
         collection.deleteMany(new Document());
-    }
-
-    public static void main(String []args){
-
-        //testing the find recent documents
-        try (MongoClient client = MongoClients.create(Constants.URI)) {
-            ExpenseDataManager ed = new ExpenseDataManager(client);
-
-            //List <Document> list;
-            List<Expense> list;
-            list = ed.findRecentDocuments("sphung@gmail.com");
-
-            System.out.println(list.get(0).toString());
-            System.out.println(list.get(1).toString());
-            System.out.println(list.get(2).toString());
-
-        }
-
     }
 }
