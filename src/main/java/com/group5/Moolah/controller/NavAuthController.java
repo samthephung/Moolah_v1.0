@@ -5,6 +5,7 @@ import com.group5.Moolah.services.AccountService;
 import com.group5.Moolah.services.ExpenseService;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,9 +26,9 @@ public class NavAuthController {
         //call service for adding an expense
         if(ExpenseService.addExpenseService(id.getUserIdentifier(), expense)){
             //success message will add up --- or each time you render the dashboard the new expense will come up
-            return "dashboard";
+            return "addExpense";
         }
-        return "dashboard";
+        return "addExpense";
     }
 
     @PostMapping("/updateExpenseSubmit")
@@ -37,7 +38,7 @@ public class NavAuthController {
         //call service for adding an expense
         if(ExpenseService.updateExpenseService(id.getUserIdentifier(), updateExpense)){
             //success message will add up --- or each time you render the dashboard the new expense will come up
-            return "dashboard";
+            return "addExpense";
         }
         //add a notification that the expense does not exist -- could not update
         return "addExpense";
@@ -50,7 +51,7 @@ public class NavAuthController {
         //call service for adding an expense
         if(ExpenseService.deleteExpenseService(id.getUserIdentifier(), deleteExpense)){
             //success message will add up --- or each time you render the dashboard the new expense will come up
-            return "dashboard";
+            return "addExpense";
         }
         //add a notification that the expense does not exist
         return "addExpense";
@@ -84,10 +85,13 @@ public class NavAuthController {
 
     //GetMapping returns views  --  @GetMapping(<some path endpoint>)
     @GetMapping("/dashboard")
-    public String dashboardPage(){
+    public String dashboardPage(Model model){
         if(id.getUserIdentifier().equals("")){
             return "home";
         }
+
+        model.addAttribute("expenses", ExpenseService.retrieveRecentExpenseService(id.getUserIdentifier()));
+
         return "dashboard";
     }
 

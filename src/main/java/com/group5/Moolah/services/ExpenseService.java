@@ -5,6 +5,8 @@ import com.group5.Moolah.model.Expense;
 import com.group5.Moolah.model.UpdateExpense;
 import com.group5.Moolah.repositories.ExpenseManager;
 
+import java.util.List;
+
 public class ExpenseService {
 
 
@@ -25,19 +27,9 @@ public class ExpenseService {
     }
 
     //return arraylist of objects -- return all current expenses for a specific user
-    public static Boolean retrieveExpenseService(String emailAddress, String name){
-        return true;
+    public static List<Expense> retrieveRecentExpenseService(String id){
+        return ExpenseManager.retrieveRecentExpenseManager(id);
     }
 
-
-    //return true if updated expense occurs
-
-    /*
-    //return true if delete expense is possible
-    public static Boolean deleteExpenseService(){
-        return true;
-    }
-
-    */
 
 }

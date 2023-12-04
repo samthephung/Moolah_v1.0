@@ -26,11 +26,9 @@
     <section class="expenses">
         <h2>Recent Expenses</h2>
         <div class="expenses-list">
-            <ul>
-                <!-- Each list item represents an expense -->
-                <li>Expense 1<img src="/css/images/minus.png"></li>
-                <li>Expense 2<img src="/css/images/plus.png"></li>
-                <li>Expense 3</li>
+            <ul th:each="expense : ${expenses}">
+                <!-- Each list item represents an expense <img src="/css/images/plus.png"> <img src="/css/images/minus.png">-->
+                <li><b><span th:text="${expense.name}"></span></b> <span th:text="'---- $'+${expense.amount}"></span></li>
                 <!-- Add more list items as needed -->
             </ul>
         </div>

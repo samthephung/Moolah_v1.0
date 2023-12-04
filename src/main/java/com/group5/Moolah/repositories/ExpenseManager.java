@@ -6,6 +6,8 @@ import com.group5.Moolah.model.UpdateExpense;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 
+import java.util.List;
+
 public class ExpenseManager {
 
     //create mongo stuff in here too and then call the expense data manager classes appropriately
@@ -35,6 +37,13 @@ public class ExpenseManager {
         }
     }
 
+    public static List<Expense> retrieveRecentExpenseManager(String id) {
 
+        try (MongoClient client = MongoClients.create(Constants.URI)) {
+            ExpenseDataManager ed = new ExpenseDataManager(client);
+            //retrieve an arraylist of the expense objects
+            return ed.findRecentDocuments(id);
+        }
+    }
 
 }
