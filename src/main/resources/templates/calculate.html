@@ -31,9 +31,9 @@
         <h2></h2>
         <h2>Total at Date</h2>
         <!-- I know this doesnt need to be a list but idk enough about html to change it -->
-        <ul th:each="total : ${totals}">
-            <li><span th:text="'$'+${totals}"></span></li>
-        </ul>
+        <div th:each="total : ${totals}">
+            <h2 style="text-align:center;"><span th:text="'$'+${totals}"></span></h2>
+        </div>
     </div>
 
     <script>
