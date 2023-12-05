@@ -102,8 +102,4 @@ public class CalculationManager {
         return total;
     }
 
-    /*public void getWeekTotal(){
-
-    }*/
-
 }

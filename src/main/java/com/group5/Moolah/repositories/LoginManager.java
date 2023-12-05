@@ -33,8 +33,8 @@ public class LoginManager {
         return hexString.toString();
     }
 
-    public static void main(String[] args) { //testing purposes
+    /*public static void main(String[] args) { //testing purposes
         System.out.println(passwordHash("854tn!@q894%^&hgdfASDFHj"));
         System.out.println(passwordHash("test").equals(passwordHash("test")));
-    }
+    }*/
 }
